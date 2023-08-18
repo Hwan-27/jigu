@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 200,
                     height: 200,
                     child: Image.asset(
-                      "images/jigu3.png",
+                      "images/jigu5.png", // Image 기존 jigu3 흰 배경 지우고 로고만 남겨놓은 jigu5.Png파일로 변경
                       fit: BoxFit.cover,
                     ),
                   ),

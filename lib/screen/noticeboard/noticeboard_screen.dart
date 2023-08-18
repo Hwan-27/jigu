@@ -31,7 +31,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("팔아요"),
+        //title: const Text("팔아요"),
         actions: [
           //이 버튼 만드는데 3일 걸림
           //카테고리 버튼 설정

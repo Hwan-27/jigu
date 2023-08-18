@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:jigu/screen/noticeboard/noticeboard_report_screen.dart';
 import 'package:jigu/screen/seller/seller_screen.dart';
 import 'package:share/share.dart';
 
@@ -29,7 +30,18 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
           PopupMenuButton(
             itemBuilder: (context) => [
               const PopupMenuItem(child: Text("즐겨찾기")),
-              const PopupMenuItem(child: Text("신고하기"))
+              PopupMenuItem(
+                child: const Text("신고하기"),
+                onTap: () {
+                  //Get.to(() => const noticereportscreen());
+                  print("신고하기 메뉴가 선택되었습니다."); // 이 부분에 print 문 추가
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const noticereportscreen(),
+                      ));
+                },
+              )
             ],
           )
         ],
