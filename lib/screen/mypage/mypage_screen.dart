@@ -84,6 +84,9 @@ class _MypageScreenState extends State<MypageScreen> {
               const SizedBox(height: 10),
               const Text("문의하기", style: TextStyle(fontSize: 20)),
               const Text("공지사항", style: TextStyle(fontSize: 20)),
+              const SizedBox(
+                height: 10,
+              ),
               OutlinedButton(
                   onPressed: () => Get.to(() => const LoginScreen()),
                   child: const Text("Login")),
@@ -120,9 +123,11 @@ class _MypageScreenState extends State<MypageScreen> {
             Container(
               width: 90,
               height: 90,
-              decoration: const BoxDecoration(
-                  color: Colors.grey, shape: BoxShape.circle),
-              child: const Center(child: Text("프사")),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  border: Border.all()),
+              child: const Center(child: Text("프로필 사진")),
             ),
             const SizedBox(width: 10),
             //닉네임, 주소 자리
@@ -133,7 +138,8 @@ class _MypageScreenState extends State<MypageScreen> {
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 5),
-                const Text("서울 신림동", style: TextStyle(fontSize: 15)),
+                const Text("서울 신림동", style: TextStyle(fontSize: 14)),
+                const SizedBox(height: 5),
                 //사업자로 바뀌는 버튼
                 OutlinedButton(
                     onPressed: () {

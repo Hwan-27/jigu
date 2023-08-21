@@ -20,27 +20,27 @@ class noticereportscreen extends StatelessWidget {
               '신고내용',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               decoration: BoxDecoration(border: Border.all()),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(), hintText: '제목을 입력해주세요.'),
               cursorWidth: 2,
               cursorHeight: 20,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: '내용을 입력해주세요.'),
                 maxLines: 5,
                 minLines: 1,
@@ -48,38 +48,38 @@ class noticereportscreen extends StatelessWidget {
                 cursorHeight: 20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               '기타문의',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               decoration: BoxDecoration(border: Border.all()),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
-            Column(
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('기타문의는 help@naver.com으로'),
                 Text('보내주시길 바랍니다. (문의시간 10:00 ~ 18:00)')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            ButtonBar(
-              children: [
-                Text(
-                  '신고하기',
-                  style: TextStyle(fontSize: 16),
-                )
-              ],
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                '신고하기',
+                style: TextStyle(fontSize: 16),
+              ),
             )
           ],
         ),
