@@ -74,9 +74,11 @@ class _SeekScreenState extends State<SeekScreen> {
             itemCount: seeks.length,
             itemBuilder: (context, index) {
               return Container(
+                decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.5))),
                 padding: const EdgeInsets.all(15),
                 height: 120,
-                color: Colors.indigo[colorCode[index]],
+                //color: Colors.indigo[colorCode[index]],
                 child: Row(
                   children: [
                     Container(
@@ -84,10 +86,14 @@ class _SeekScreenState extends State<SeekScreen> {
                       width: 90,
                       margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       decoration: const BoxDecoration(
-                        color: Colors.grey,
+                        color: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: const Center(child: Text("사진, 없을경우 생략")),
+                      child: const Center(
+                          child: Text(
+                        "메인 사진",
+                        style: TextStyle(color: Colors.white),
+                      )),
                     ),
                     //Flexible 텍스트 넘침 방지
                     Flexible(

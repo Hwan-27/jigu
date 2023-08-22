@@ -49,20 +49,26 @@ class _ChatScreenState extends State<ChatScreen> {
             itemCount: chats.length,
             itemBuilder: (context, index) {
               return Container(
+                decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.5))),
                 padding: const EdgeInsets.all(15),
                 height: 100,
-                color: Colors.indigo[colorCode[index]],
+                //color: Colors.indigo[colorCode[index]],
                 child: Row(
                   children: [
                     Container(
                       height: 70,
                       width: 70,
                       margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(35),
                       ),
-                      child: const Center(child: Text("프사")),
+                      child: const Center(
+                          child: Text(
+                        "프로필사진",
+                        style: TextStyle(color: Colors.white),
+                      )),
                     ),
                     //Flexible 텍스트 넘침 방지
                     Flexible(
@@ -70,6 +76,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           //찾는글 제목
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             chats[index],
                             overflow: TextOverflow.clip,
