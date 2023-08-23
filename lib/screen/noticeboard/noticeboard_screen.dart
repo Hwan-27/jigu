@@ -31,8 +31,32 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title: const Text("팔아요"),
         actions: [
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                selectPlace =
+                    await Get.to(() => const NoticeboardPlaceScreen());
+              } catch (e) {
+                selectPlace = selectPlace;
+              }
+              setState(() {});
+            },
+            style: ElevatedButton.styleFrom(elevation: 0),
+            child: Row(
+              children: [
+                Text(
+                  selcetValue(selectPlace, "덕천동"),
+                  style: const TextStyle(fontSize: 17, color: Colors.white),
+                ),
+                const Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
+
           //이 버튼 만드는데 3일 걸림
           //카테고리 버튼 설정
           ElevatedButton(
@@ -51,31 +75,50 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
             //버튼 입체감 없애기
             style: ElevatedButton.styleFrom(elevation: 0),
             //텍스트 설정
-            child: Text(
-              selcetValue(selectKategorie, "카테고리"),
-              style: const TextStyle(color: Colors.white, fontSize: 17),
+
+            child: Row(
+              children: [
+                Text(
+                  selcetValue(selectKategorie, ""),
+                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                ),
+                const SizedBox(
+                  width: 3,
+                ),
+                const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                )
+              ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () async {
-              //선택할 경우
-              try {
-                selectPlace =
-                    await Get.to(() => const NoticeboardPlaceScreen());
-                //선택안하고 돌아올경우
-              } catch (e) {
-                selectPlace = selectPlace;
-              }
-              setState(() {});
-            },
-            //버튼 입체감 없애기
-            style: ElevatedButton.styleFrom(elevation: 0),
-            //텍스트 설정
-            child: Text(
-              selcetValue(selectPlace, "지역설정"),
-              style: const TextStyle(color: Colors.white, fontSize: 17),
-            ),
-          ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     // 선택할 경우
+          //     try {
+          //       selectPlace =
+          //           await Get.to(() => const NoticeboardPlaceScreen());
+          //       // 선택안하고 돌아올경우
+          //     } catch (e) {
+          //       selectPlace = selectPlace;
+          //     }
+          //     setState(() {});
+          //   },
+          //   style: ElevatedButton.styleFrom(elevation: 0),
+          //   child: Row(
+          //     children: [
+          //       const Icon(
+          //         Icons.keyboard_double_arrow_down,
+          //       ),
+          //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
+          //       Text(
+          //         selcetValue(selectPlace, "지역 설정"),
+          //         style: const TextStyle(color: Colors.white, fontSize: 17),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+
           //검색화면에 검색과 토글버튼 생성 예정
           IconButton(
               onPressed: () {
@@ -98,7 +141,9 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
             itemBuilder: (context, index) {
               return Container(
                 decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 0.5))),
+                    border: Border(
+                        bottom:
+                            BorderSide(width: 0.1, color: Colors.blueGrey))),
                 padding: const EdgeInsets.all(15),
                 height: 120,
                 //color: Colors.indigo[colorCode[index]],

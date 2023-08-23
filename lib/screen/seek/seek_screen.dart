@@ -75,7 +75,12 @@ class _SeekScreenState extends State<SeekScreen> {
             itemBuilder: (context, index) {
               return Container(
                 decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 0.5))),
+                  border: Border(
+                      bottom: BorderSide(
+                    width: 0.1,
+                    color: Colors.blueGrey,
+                  )),
+                ),
                 padding: const EdgeInsets.all(15),
                 height: 120,
                 //color: Colors.indigo[colorCode[index]],

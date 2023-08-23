@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("채팅 화면"),
+        title: const Text("채팅"),
         actions: [
           IconButton(
             onPressed: () {
@@ -50,7 +50,9 @@ class _ChatScreenState extends State<ChatScreen> {
             itemBuilder: (context, index) {
               return Container(
                 decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 0.5))),
+                  border: Border(
+                      bottom: BorderSide(width: 0.1, color: Colors.blueGrey)),
+                ),
                 padding: const EdgeInsets.all(15),
                 height: 100,
                 //color: Colors.indigo[colorCode[index]],
