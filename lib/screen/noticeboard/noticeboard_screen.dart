@@ -31,32 +31,42 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          ElevatedButton(
-            onPressed: () async {
-              try {
-                selectPlace =
-                    await Get.to(() => const NoticeboardPlaceScreen());
-              } catch (e) {
-                selectPlace = selectPlace;
-              }
-              setState(() {});
-            },
-            style: ElevatedButton.styleFrom(elevation: 0),
-            child: Row(
-              children: [
-                Text(
-                  selcetValue(selectPlace, "덕천동"),
-                  style: const TextStyle(fontSize: 17, color: Colors.white),
-                ),
-                const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.white,
-                ),
-              ],
+        title: Title(
+          color: Colors.white,
+          child: SizedBox(
+            width: 107,
+            height: 55,
+            child: ElevatedButton(
+              onPressed: () async {
+                try {
+                  selectPlace =
+                      await Get.to(() => const NoticeboardPlaceScreen());
+                } catch (e) {
+                  selectPlace = selectPlace;
+                }
+                setState(() {});
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 0, backgroundColor: Colors.grey[850]),
+              child: Row(
+                children: [
+                  Text(
+                    selcetValue(selectPlace, "덕천동"),
+                    style: const TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           ),
-
+        ),
+        actions: [
           //이 버튼 만드는데 3일 걸림
           //카테고리 버튼 설정
           ElevatedButton(
@@ -73,20 +83,24 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
               setState(() {});
             },
             //버튼 입체감 없애기
-            style: ElevatedButton.styleFrom(elevation: 0),
+            style: ElevatedButton.styleFrom(
+                elevation: 0, backgroundColor: Colors.grey[850]),
             //텍스트 설정
 
             child: Row(
               children: [
                 Text(
                   selcetValue(selectKategorie, ""),
-                  style: const TextStyle(color: Colors.white, fontSize: 17),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   width: 3,
                 ),
                 const Icon(
-                  Icons.menu,
+                  Icons.tune,
                   color: Colors.white,
                 )
               ],
@@ -121,6 +135,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
 
           //검색화면에 검색과 토글버튼 생성 예정
           IconButton(
+              color: Colors.white,
               onPressed: () {
                 Navigator.push(
                     context,
@@ -142,8 +157,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
               return Container(
                 decoration: const BoxDecoration(
                     border: Border(
-                        bottom:
-                            BorderSide(width: 0.1, color: Colors.blueGrey))),
+                        bottom: BorderSide(width: 0.1, color: Colors.grey))),
                 padding: const EdgeInsets.all(15),
                 height: 120,
                 //color: Colors.indigo[colorCode[index]],
@@ -154,14 +168,26 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       width: 90,
                       margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       decoration: const BoxDecoration(
-                        color: Colors.black,
+                        color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //       color: Colors.grey.withOpacity(0.8),
+                        //       spreadRadius: 1,
+                        //       blurRadius: 5,
+                        //       offset: const Offset(0, 3)),
+                        // ],
                       ),
-                      child: const Center(
-                          child: Text(
-                        "메인 사진",
-                        style: TextStyle(color: Colors.white),
-                      )),
+                      child: Center(
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey[850],
+                        ),
+                        //     child: Text(
+                        //   "메인 사진",
+                        //   style: TextStyle(color: Colors.white),
+                        // )
+                      ),
                     ),
                     //Flexible 텍스트 넘침 방지
                     const Flexible(
@@ -171,13 +197,15 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                           Text(
                             "홍보글 제목이 들어갑니다.",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300),
                           ),
-                          SizedBox(height: 5),
+                          SizedBox(height: 10),
                           Text(
-                            "안녕하세요 이곳에는 홍보글 내용이 들어갑니다. 보이는 내용은 최대 2줄이고 넘을 경우 나머지는 잘리게 됩니다.",
+                            "상세내용이 들어갑니다.",
                             maxLines: 2,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         ],
                       ),

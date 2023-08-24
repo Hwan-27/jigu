@@ -27,9 +27,13 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("채팅"),
+        title: const Text(
+          "채팅",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
+            color: Colors.black,
             onPressed: () {
               Navigator.push(
                   context,
