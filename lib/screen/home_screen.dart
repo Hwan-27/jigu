@@ -1,3 +1,5 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jigu/screen/mypage/mypage_screen.dart';
@@ -42,12 +44,31 @@ class _HomeScreenState extends State<HomeScreen> {
         // 버튼 순서와 디자인 설정
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: "팔아요"),
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            label: "팔아요",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.accessibility_new), label: "찾아요"),
+            icon: Icon(
+              Icons.accessibility_new_outlined,
+              color: Colors.white,
+            ),
+            label: "찾아요",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.chat_bubble), label: "채팅"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "내정보"),
+              icon: Icon(
+                CupertinoIcons.chat_bubble_2,
+                color: Colors.white,
+              ),
+              label: "채팅"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_2_outlined,
+                color: Colors.white,
+              ),
+              label: "내정보"),
         ],
       ),
     );

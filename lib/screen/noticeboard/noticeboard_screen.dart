@@ -190,22 +190,24 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       ),
                     ),
                     //Flexible 텍스트 넘침 방지
-                    const Flexible(
+                    Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "홍보글 제목이 들어갑니다.",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w300),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             "상세내용이 들어갑니다.",
                             maxLines: 2,
-                            style: TextStyle(fontSize: 16, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white.withOpacity(0.9)),
                           ),
                         ],
                       ),

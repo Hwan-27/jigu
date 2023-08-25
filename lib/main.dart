@@ -21,6 +21,13 @@ class App extends StatelessWidget {
         // 다른 라우트 추가 가능
       },
       theme: ThemeData(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.grey[850],
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white.withOpacity(0.5)
+            // selectedLabelStyle: TextStyle(color: Colors.blueGrey[400]),
+            // unselectedLabelStyle: const TextStyle(color: Colors.white),
+            ),
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.grey[850], elevation: 1), // 같은 색상 사용
         scaffoldBackgroundColor: Colors.grey[850], // 같은 색상 사용

@@ -29,11 +29,11 @@ class _SeekScreenState extends State<SeekScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("찾아요",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         actions: [
           //검색버튼
           IconButton(
-              color: Colors.black,
+              color: Colors.white,
               //누르면 화면 이동
               onPressed: () {
                 Navigator.push(
@@ -44,7 +44,7 @@ class _SeekScreenState extends State<SeekScreen> {
               },
               icon: const Icon(Icons.search)),
           PopupMenuButton(
-            color: Colors.black,
+            color: Colors.white,
             //PopupMenuItem onTap 사용안하고 작동 방법
             //https://github.com/flutter/flutter/issues/81682
             itemBuilder: (context) => [
@@ -52,11 +52,11 @@ class _SeekScreenState extends State<SeekScreen> {
                   value: 0,
                   child: Text(
                     "작성한글",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   )),
               const PopupMenuItem(
                   value: 1,
-                  child: Text("작성하기", style: TextStyle(color: Colors.white))),
+                  child: Text("작성하기", style: TextStyle(color: Colors.black))),
             ],
             onSelected: (choice) {
               switch (choice) {
@@ -88,7 +88,7 @@ class _SeekScreenState extends State<SeekScreen> {
                   border: Border(
                       bottom: BorderSide(
                     width: 0.1,
-                    color: Colors.blueGrey,
+                    color: Colors.grey,
                   )),
                 ),
                 padding: const EdgeInsets.all(15),
