@@ -168,7 +168,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       width: 90,
                       margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         // boxShadow: [
                         //   BoxShadow(
@@ -181,7 +181,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       child: Center(
                         child: Icon(
                           Icons.camera_alt,
-                          color: Colors.grey[850],
+                          color: Colors.white.withOpacity(0.8),
                         ),
                         //     child: Text(
                         //   "메인 사진",

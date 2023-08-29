@@ -60,7 +60,7 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                 //본문 내용
                 child: const Text(
                   "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세",
-                  style: TextStyle(fontSize: 50),
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -86,9 +86,9 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                             height: 90,
                             width: 90,
                             decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
-                            child: const Center(child: Text("프사")),
+                            child: const Center(child: Icon(Icons.camera_alt)),
                           ),
                           //중간 작은 공백
                           const SizedBox(width: 10),
@@ -100,24 +100,30 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                                 onTap: () {
                                   Get.to(() => const SellerScreen());
                                 },
-                                child: const Column(
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       "세븐일레븐 부산수영푸른빌점",
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    Text("마트/편의점",
-                                        style: TextStyle(
-                                            fontSize: 15, color: Colors.grey)),
+                                    Text(
+                                      "마트/편의점",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white.withOpacity(0.8),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                               const SizedBox(height: 5),
-                              copyClipboardToast("부산 수영구 망미번영로16번길 74"),
-                              const SizedBox(height: 5),
+                              copyClipboardToast(
+                                "부산 수영구 망미번영로16번길 74",
+                              ),
+                              //const SizedBox(height: 5),
                               copyClipboardToast("010-8285-3283"),
                             ],
                           ),
@@ -137,8 +143,8 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
   //클립보드에 문자 복사와 토스트 메세지 띄움
   InkWell copyClipboardToast(String text) {
     return InkWell(
-      child:
-          Text(text, style: const TextStyle(fontSize: 18, color: Colors.black)),
+      child: Text(text,
+          style: TextStyle(fontSize: 18, color: Colors.white.withOpacity(0.8))),
       onTap: () {
         copyClipboard(text);
         copyToast();

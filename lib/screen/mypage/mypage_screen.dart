@@ -24,7 +24,7 @@ class _MypageScreenState extends State<MypageScreen> {
         actions: [
           //알림 목록 볼 수 있는 버튼
           IconButton(
-              color: Colors.black,
+              color: Colors.white,
               onPressed: () {
                 Navigator.push(
                     context,
@@ -35,7 +35,7 @@ class _MypageScreenState extends State<MypageScreen> {
               icon: const Icon(Icons.notifications)),
           //환경설정할 수 있는 버튼
           IconButton(
-              color: Colors.black,
+              color: Colors.white,
               onPressed: () {
                 Navigator.push(
                     context,
@@ -47,7 +47,7 @@ class _MypageScreenState extends State<MypageScreen> {
         ],
         title: const Text(
           "마이페이지",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: 17),
         ),
       ),
       //UI 보호해주는 클래스
@@ -128,22 +128,14 @@ class _MypageScreenState extends State<MypageScreen> {
             Container(
               width: 90,
               height: 90,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
-                borderRadius: const BorderRadius.all(Radius.circular(15)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.8),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3), // 그림자의 위치 조절
-                  ),
-                ],
+                borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
-              child: const Center(
-                  child: Text(
-                "프로필 사진",
-                style: TextStyle(color: Colors.white),
+              child: Center(
+                  child: Icon(
+                Icons.camera_alt,
+                color: Colors.white.withOpacity(0.8),
               )),
             ),
             const SizedBox(width: 15),

@@ -29,11 +29,11 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: const Text(
           "채팅",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: 17),
         ),
         actions: [
           IconButton(
-            color: Colors.black,
+            color: Colors.white,
             onPressed: () {
               Navigator.push(
                   context,
@@ -55,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
               return Container(
                 decoration: const BoxDecoration(
                   border: Border(
-                      bottom: BorderSide(width: 0.1, color: Colors.blueGrey)),
+                      bottom: BorderSide(width: 0.1, color: Colors.grey)),
                 ),
                 padding: const EdgeInsets.all(15),
                 height: 100,
@@ -70,10 +70,10 @@ class _ChatScreenState extends State<ChatScreen> {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(35),
                       ),
-                      child: const Center(
-                          child: Text(
-                        "프로필사진",
-                        style: TextStyle(color: Colors.white),
+                      child: Center(
+                          child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.white.withOpacity(0.8),
                       )),
                     ),
                     //Flexible 텍스트 넘침 방지
@@ -90,14 +90,14 @@ class _ChatScreenState extends State<ChatScreen> {
                             overflow: TextOverflow.clip,
                             softWrap: false,
                             style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                                fontSize: 18, fontWeight: FontWeight.w800),
                           ),
                           const SizedBox(height: 5),
                           const Text(
                             "이곳에는 마지막에 보낸 채팅 내용이 들어갑니다. 보이는 내용은 최대 2줄이고 넘을 경우 나머지는 잘리게 됩니다.",
                             overflow: TextOverflow.clip,
                             softWrap: false,
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 14),
                           ),
                         ],
                       ),

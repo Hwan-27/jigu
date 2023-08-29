@@ -18,7 +18,10 @@ class _NoticeboardKategorieScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("카테고리를 선택해주세요."),
+        foregroundColor: Colors.white,
+        title: const Text(
+          "카테고리를 선택해주세요.",
+        ),
       ),
       body: SafeArea(
           child: SingleChildScrollView(

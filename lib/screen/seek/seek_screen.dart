@@ -29,7 +29,7 @@ class _SeekScreenState extends State<SeekScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("찾아요",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.white, fontSize: 17)),
         actions: [
           //검색버튼
           IconButton(
@@ -104,11 +104,10 @@ class _SeekScreenState extends State<SeekScreen> {
                         color: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: const Center(
-                          child: Text(
-                        "메인 사진",
-                        style: TextStyle(color: Colors.white),
-                      )),
+                      child: Center(
+                        child: Icon(Icons.camera_alt,
+                            color: Colors.white.withOpacity(0.8)),
+                      ),
                     ),
                     //Flexible 텍스트 넘침 방지
                     Flexible(
@@ -120,8 +119,7 @@ class _SeekScreenState extends State<SeekScreen> {
                             seeks[index],
                             overflow: TextOverflow.clip,
                             softWrap: false,
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 18),
                           ),
                           const SizedBox(height: 5),
                           const Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class noticereportscreen extends StatelessWidget {
   const noticereportscreen({Key? key}) : super(key: key);
@@ -30,8 +31,14 @@ class noticereportscreen extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: '제목을 입력해주세요.'),
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.white.withOpacity(0.5))),
+                  focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(width: 2, color: Colors.blue)),
+                  hintText: '제목을 입력해주세요.',
+                  hintStyle: const TextStyle(color: Colors.white)),
               cursorWidth: 2,
               cursorHeight: 20,
             ),
@@ -40,8 +47,14 @@ class noticereportscreen extends StatelessWidget {
             ),
             Container(
               child: TextFormField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: '내용을 입력해주세요.'),
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.white.withOpacity(0.5))),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.blue)),
+                    hintText: '내용을 입력해주세요.',
+                    hintStyle: const TextStyle(color: Colors.white)),
                 maxLines: 5,
                 minLines: 1,
                 cursorWidth: 2,
@@ -59,7 +72,9 @@ class noticereportscreen extends StatelessWidget {
               height: 10,
             ),
             Container(
-              decoration: BoxDecoration(border: Border.all()),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+              ),
             ),
             const SizedBox(
               height: 5,

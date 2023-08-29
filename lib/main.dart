@@ -21,6 +21,10 @@ class App extends StatelessWidget {
         // 다른 라우트 추가 가능
       },
       theme: ThemeData(
+        textTheme: TextTheme(
+            bodyLarge: TextStyle(color: Colors.white.withOpacity(0.8)),
+            bodyMedium: TextStyle(color: Colors.white.withOpacity(1)),
+            titleLarge: TextStyle(color: Colors.white.withOpacity(0.8))),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: Colors.grey[850],
             selectedItemColor: Colors.white,
