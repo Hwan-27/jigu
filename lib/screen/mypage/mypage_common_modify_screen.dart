@@ -18,13 +18,17 @@ class _MypageCommonModifyScreenState extends State<MypageCommonModifyScreen> {
         appBar: AppBar(
           //타이틀 여백 설정 - 없애버림
           titleSpacing: 0,
-          title: const Text("프로필 수정"),
+          title: const Text(
+            "프로필 수정",
+            style: TextStyle(fontSize: 17),
+          ),
           actions: [
             //완료 버튼
             ElevatedButton(
               onPressed: () {},
               //버튼 입체감 없애기
-              style: ElevatedButton.styleFrom(elevation: 0),
+              style: ElevatedButton.styleFrom(
+                  elevation: 0, backgroundColor: Colors.grey[850]),
               child: const Text(
                 "완료",
                 style: TextStyle(color: Colors.white, fontSize: 18),
@@ -42,12 +46,37 @@ class _MypageCommonModifyScreenState extends State<MypageCommonModifyScreen> {
                 width: 100,
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                 decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.grey),
-                child: const Center(child: Text("프사변경")),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Center(
+                    child: Icon(
+                  Icons.camera_alt,
+                  color: Colors.white.withOpacity(0.8),
+                )),
               ),
-              myTextField('닉네임'),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: "닉네임",
+                    labelStyle: TextStyle(color: Colors.white.withOpacity(0.8)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 2))),
+              ),
               const SizedBox(height: 15),
-              myTextField("나의 나와바리 설정"),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: "나의 지역 설정",
+                    labelStyle: TextStyle(color: Colors.white.withOpacity(0.8)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.white.withOpacity(0.8))),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue, width: 2))),
+              ),
             ],
           ),
         )),

@@ -156,7 +156,7 @@ class _MypageScreenState extends State<MypageScreen> {
                         common = !common;
                       });
                     },
-                    child: const Text("사업자 전환")),
+                    child: const Text("사업자전환")),
               ],
             ),
           ],
@@ -166,9 +166,9 @@ class _MypageScreenState extends State<MypageScreen> {
           onPressed: () {
             Get.to(() => const MypageCommonModifyScreen());
           },
-          child: const Text(
+          child: Text(
             "프로필 수정",
-            style: TextStyle(fontSize: 15, color: Colors.grey),
+            style: TextStyle(fontSize: 15, color: Colors.blue[300]),
           ),
         ),
       ],
@@ -186,20 +186,14 @@ class _MypageScreenState extends State<MypageScreen> {
             Container(
               width: 90,
               height: 90,
-              decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey.withOpacity(0.8),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3))
-                  ]),
-              child: const Center(
-                  child: Text(
-                "프로필 사진",
-                style: TextStyle(color: Colors.white),
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+              child: Center(
+                  child: Icon(
+                Icons.camera_alt,
+                color: Colors.white.withOpacity(0.8),
               )),
             ),
             const SizedBox(width: 15),
@@ -213,13 +207,14 @@ class _MypageScreenState extends State<MypageScreen> {
                 const SizedBox(height: 5),
                 const Text("해운대구 중동", style: TextStyle(fontSize: 15)),
                 //일반 계정으로 바뀌는 버튼
+                const SizedBox(height: 5),
                 OutlinedButton(
                     onPressed: () {
                       setState(() {
                         common = !common;
                       });
                     },
-                    child: const Text("일반 전환")),
+                    child: const Text("일반전환")),
               ],
             ),
           ],
@@ -229,9 +224,9 @@ class _MypageScreenState extends State<MypageScreen> {
           onPressed: () {
             Get.to(() => const MypageSellerModifyScreen());
           },
-          child: const Text(
+          child: Text(
             "매장 정보 수정",
-            style: TextStyle(fontSize: 15, color: Colors.grey),
+            style: TextStyle(fontSize: 15, color: Colors.blue[300]),
           ),
         ),
       ],

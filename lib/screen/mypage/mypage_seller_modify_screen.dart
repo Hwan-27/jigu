@@ -24,7 +24,8 @@ class _MypageSellerModifyScreenState extends State<MypageSellerModifyScreen> {
             ElevatedButton(
               onPressed: () {},
               //버튼 입체감 없애기
-              style: ElevatedButton.styleFrom(elevation: 0),
+              style: ElevatedButton.styleFrom(
+                  elevation: 0, backgroundColor: Colors.grey[850]),
               child: const Text(
                 "완료",
                 style: TextStyle(color: Colors.white, fontSize: 18),
@@ -42,11 +43,24 @@ class _MypageSellerModifyScreenState extends State<MypageSellerModifyScreen> {
                 width: 100,
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                 decoration: const BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.black,
                     borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: const Center(child: Text("프사변경")),
+                child: Center(
+                    child: Icon(
+                  Icons.camera_alt,
+                  color: Colors.white.withOpacity(0.8),
+                )),
               ),
-              myTextField('매장명'),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: "매장명",
+                    labelStyle: const TextStyle(color: Colors.white),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.white.withOpacity(0.8))),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.blue))),
+              ),
               const SizedBox(height: 15),
             ],
           ),
