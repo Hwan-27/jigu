@@ -26,33 +26,34 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "채팅",
-          style: TextStyle(color: Colors.white, fontSize: 17),
-        ),
-        actions: [
-          IconButton(
-            color: Colors.white,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SearchScreen(),
-                  ));
-            },
-            icon: const Icon(Icons.search),
+        appBar: AppBar(
+          title: const Text(
+            "채팅",
+            style: TextStyle(color: Colors.white, fontSize: 17),
           ),
-        ],
-      ),
-      body: GestureDetector(
-          onTap: () {
-            Get.to(() => const ChatDetailScreen());
-          },
-          child: ListView.builder(
-            itemCount: chats.length,
-            itemBuilder: (context, index) {
-              return Container(
+          actions: [
+            IconButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ));
+              },
+              icon: const Icon(Icons.search),
+            ),
+          ],
+        ),
+        body: ListView.builder(
+          itemCount: chats.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                final selectedChat = chats[index];
+                Get.to(() => const ChatDetailScreen(), arguments: selectedChat);
+              },
+              child: Container(
                 decoration: const BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 0.1, color: Colors.grey)),
@@ -104,9 +105,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     )
                   ],
                 ),
-              );
-            },
-          )),
-    );
+              ),
+            );
+          },
+        ));
   }
 }

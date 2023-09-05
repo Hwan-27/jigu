@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   const ChatDetailScreen({super.key});
@@ -10,11 +11,16 @@ class ChatDetailScreen extends StatefulWidget {
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final String userId = Get.arguments ?? '사용자 이름';
     return GestureDetector(
       //키보드 내리기
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
+          title: Text(
+            userId,
+            style: const TextStyle(fontSize: 17, color: Colors.white),
+          ),
           actions: [
             PopupMenuButton(
                 itemBuilder: (context) => [
@@ -39,7 +45,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             children: [
               Expanded(
                 child: Container(
-                  color: Colors.amber[50],
+                  color: Colors.grey[850],
                 ),
               ),
               Row(
@@ -48,18 +54,28 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                       onPressed: () {},
                       icon: const Icon(
                         Icons.add,
-                        color: Colors.grey,
+                        color: Colors.white,
                       )),
                   Expanded(
                     child: TextFormField(
-                      decoration: const InputDecoration(hintText: "메세지를 입력하세요"),
+                      decoration: InputDecoration(
+                          hintText: "메세지를 입력하세요",
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Colors.blue, width: 2),
+                              borderRadius: BorderRadius.circular(10.0))),
                     ),
                   ),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(
                         Icons.send,
-                        color: Colors.grey,
+                        color: Colors.white,
                       ))
                 ],
               ),
