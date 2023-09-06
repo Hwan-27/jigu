@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/home_screen.dart';
 import 'package:jigu/screen/mypage/mypage_screen.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_screen.dart';
 
 void main() {
+  Fluttertoast.showToast(
+    msg: '설쩡완료', // 초기에는 빈 문자열로 설정
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.CENTER,
+    fontSize: 16.0,
+    backgroundColor: Colors.grey[850]!,
+    textColor: Colors.white,
+  );
+
   runApp(const App());
 }
 

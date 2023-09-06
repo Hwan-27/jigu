@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class ChatDetailScreen extends StatefulWidget {
@@ -9,9 +10,11 @@ class ChatDetailScreen extends StatefulWidget {
 }
 
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
+  bool bookMarkCheck = false;
+
   @override
   Widget build(BuildContext context) {
-    final String userId = Get.arguments ?? '사용자 이름';
+    final String userId = Get.arguments ?? '사용자';
     return GestureDetector(
       //키보드 내리기
       onTap: () => FocusScope.of(context).unfocus(),
@@ -24,18 +27,23 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           actions: [
             PopupMenuButton(
                 itemBuilder: (context) => [
-                      const PopupMenuItem(value: 0, child: Text("알림끄기")),
+                      PopupMenuItem(
+                          value: 0,
+                          child: Text(bookMarkCheck ? "알림 켜기" : "알림끄기")),
                       const PopupMenuItem(value: 1, child: Text("차단하기")),
                       const PopupMenuItem(value: 2, child: Text("채팅방 나가기")),
                     ],
                 onSelected: (choice) {
                   switch (choice) {
                     case 0:
+                      toggleBookMarkCheck();
                       break;
                     case 1:
+                      userBlock(userId);
                       break;
                     case 2:
                       exitDialog();
+                      break;
                   }
                 })
           ],
@@ -69,6 +77,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                               borderSide: const BorderSide(
                                   color: Colors.blue, width: 2),
                               borderRadius: BorderRadius.circular(10.0))),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   IconButton(
@@ -86,14 +95,32 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     );
   }
 
+  // 알림 켜기 / 끄기 체크함수
+  void toggleBookMarkCheck() {
+    setState(() {
+      bookMarkCheck = !bookMarkCheck;
+    });
+    final message = bookMarkCheck ? '알림을 껐습니다.' : '알림을 켰습니다.';
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        fontSize: 16,
+        backgroundColor: Colors.grey[850]!,
+        textColor: Colors.white);
+  }
+
   //채팅방 나가기 확인 창
   void exitDialog() {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("채팅방을 나가시겠습니까?"),
-          content: const Text("채팅방을 나가시면 대화내용이 삭제되고 복구 할 수 없습니다."),
+          title: const Text(
+            "채팅방을 나가시겠습니까?",
+            style: TextStyle(color: Colors.black),
+          ),
+          content: const Text("대화내용이 삭제됩니다."),
           actions: <Widget>[
             //나가기 버튼 설정
             OutlinedButton(
@@ -109,5 +136,27 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         );
       },
     );
+  }
+
+  void userBlock(String userId) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(
+              "$userId 님을 차단하면 서로의 게시글을 볼 수 없고, 서로 채팅도 보낼 수 없습니다. 차단하시겠습니까 ?",
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {},
+                child: const Text("차단하기"),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text("취소"),
+              ),
+            ],
+          );
+        });
   }
 }
