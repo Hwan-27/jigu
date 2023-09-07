@@ -30,15 +30,39 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //글쓴이 정보
+
+                //질문자가 올린 사진
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(10)),
+                      height: 120,
+                      width: 120,
+                      child: const Center(
+                          child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey,
+                      )),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Container(
                       height: 80,
                       width: 80,
                       decoration: BoxDecoration(
-                          color: Colors.grey,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(50)),
-                      child: const Center(child: Text("프사")),
+                      child: const Center(
+                          child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey,
+                      )),
                     ),
                     const SizedBox(width: 15),
                     Column(
@@ -59,45 +83,20 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
                     )
                   ],
                 ),
-                //질문자가 올린 사진
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 120,
-                      width: 120,
-                      color: Colors.grey,
-                      child: const Center(child: Text("사진")),
-                    ),
-                    Container(
-                      height: 120,
-                      width: 120,
-                      color: Colors.grey,
-                      child: const Center(child: Text("사진")),
-                    ),
-                    Container(
-                      height: 120,
-                      width: 120,
-                      color: Colors.grey,
-                      child: const Center(child: Text("사진")),
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 10),
                 const Text(
                   "긁어서 확인하는 복권 100만원어치 사고 싶습니다.",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 const Text(
                   "마트/편의점  <전체에게 질문>",
-                  style: TextStyle(color: Colors.black54),
+                  style: TextStyle(color: Colors.grey),
                 ),
                 const SizedBox(height: 10),
                 const Text(
                   "미안하다 이거 보여주려고 어그로끌었다.. 나루토 사스케 싸움수준 ㄹㅇ실화냐? 진짜 세계관최강자들의 싸움이다.. 그찐따같던 나루토가 맞나? 진짜 나루토는 전설이다..진짜옛날에 맨날나루토봘는데 왕같은존재인 호카게 되서 세계최강 전설적인 영웅이된나루토보면 진짜내가다 감격스럽고 나루토 노래부터 명장면까지 가슴울리는장면들이 뇌리에 스치면서 가슴이 웅장해진다..",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 20),
               ],

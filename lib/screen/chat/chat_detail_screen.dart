@@ -152,7 +152,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                 child: const Text("차단하기"),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: const Text("취소"),
               ),
             ],

@@ -86,9 +86,13 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                             height: 90,
                             width: 90,
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: const Center(child: Icon(Icons.camera_alt)),
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(
+                                child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey,
+                            )),
                           ),
                           //중간 작은 공백
                           const SizedBox(width: 10),
