@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jigu/screen/noticeboard/noticeboard_report_screen.dart';
 import 'package:jigu/screen/seek/seek_detail_list_screen.dart';
 
 class SeekDetailScreen extends StatefulWidget {
@@ -13,15 +14,27 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        //더보기 버튼
-        PopupMenuButton(
-          itemBuilder: (context) => [
-            const PopupMenuItem(child: Text("차단하기")),
-            const PopupMenuItem(child: Text("신고하기"))
-          ],
-        )
-      ]),
+      appBar: AppBar(
+        actions: [
+          //더보기 버튼
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                onTap: () {
+                  userBlock();
+                },
+                child: const Text("차단하기"),
+              ),
+              PopupMenuItem(
+                child: const Text("신고하기"),
+                onTap: () {
+                  Get.to(() => const noticereportscreen());
+                },
+              )
+            ],
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -119,5 +132,14 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
         )
       ],
     );
+  }
+
+  void userBlock() {
+    print(const Text('차단기능'));
+  }
+
+  void userReport() {
+    print('함수 호출 됨');
+    Get.to(() => const noticereportscreen());
   }
 }
