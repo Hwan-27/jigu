@@ -46,14 +46,15 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
 
                 //질문자가 올린 사진
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
+                      margin: const EdgeInsets.all(0),
                       decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(10)),
-                      height: 120,
-                      width: 120,
+                      height: 200,
+                      width: 470,
                       child: const Center(
                           child: Icon(
                         Icons.camera_alt,
@@ -66,8 +67,8 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
                 Row(
                   children: [
                     Container(
-                      height: 80,
-                      width: 80,
+                      height: 60,
+                      width: 60,
                       decoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(50)),
@@ -77,7 +78,7 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
                         color: Colors.grey,
                       )),
                     ),
-                    const SizedBox(width: 15),
+                    const SizedBox(width: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +89,7 @@ class _SeekDetailScreenState extends State<SeekDetailScreen> {
                           },
                           child: const Text("닉네임",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600)),
+                                  fontSize: 16, fontWeight: FontWeight.w600)),
                         ),
                         const SizedBox(height: 10),
                         const Text("부산 수영구 광안리")

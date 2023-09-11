@@ -54,15 +54,42 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
             //화면 위에 고정될 내용
             SliverToBoxAdapter(
               child: Container(
-                padding: const EdgeInsets.all(10),
-                //본문 내용 정렬
-                alignment: Alignment.topLeft,
-                //본문 내용
-                child: const Text(
-                  "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세",
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
+                  padding: const EdgeInsets.all(10),
+                  //본문 내용 정렬
+                  alignment: Alignment.topLeft,
+                  //본문 내용
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.all(0),
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 200,
+                            width: 470,
+                            child: const Center(
+                                child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey,
+                            )),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      const Row(
+                        children: [
+                          Padding(padding: EdgeInsets.all(5)),
+                          Text(
+                            '내용이 들어가는 부분',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
             ),
             //판매자 정보
             //화면 아래에 고정됨 - 스크롤 생성될 내용에도 화면 아래에 위치
@@ -96,6 +123,7 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                           ),
                           //중간 작은 공백
                           const SizedBox(width: 10),
+
                           //판매자 정보
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,13 +138,13 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
                                     const Text(
                                       "세븐일레븐 부산수영푸른빌점",
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "마트/편의점",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 14,
                                         color: Colors.white.withOpacity(0.8),
                                       ),
                                     ),
@@ -148,7 +176,7 @@ class _NoticeboardDetailScreenState extends State<NoticeboardDetailScreen> {
   InkWell copyClipboardToast(String text) {
     return InkWell(
       child: Text(text,
-          style: TextStyle(fontSize: 18, color: Colors.white.withOpacity(0.8))),
+          style: TextStyle(fontSize: 16, color: Colors.white.withOpacity(1))),
       onTap: () {
         copyClipboard(text);
         copyToast();
@@ -162,7 +190,7 @@ void copyToast() {
   Fluttertoast.showToast(
     msg: "클립보드에 복사되었습니다.",
     gravity: ToastGravity.BOTTOM,
-    backgroundColor: Colors.grey.withOpacity(0.9),
+    backgroundColor: Colors.grey.withOpacity(19),
     toastLength: Toast.LENGTH_SHORT,
   );
 }
