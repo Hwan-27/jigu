@@ -21,6 +21,7 @@ class _NoticeboardKategorieScreenState
         foregroundColor: Colors.white,
         title: const Text(
           "카테고리를 선택해주세요.",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
       body: SafeArea(
@@ -31,17 +32,20 @@ class _NoticeboardKategorieScreenState
             children: [
               for (var title in kmodel.keys)
                 ExpansionPanelRadio(
+                  backgroundColor: Colors.grey[850],
+
                   //패널의 위치값
                   value: Text(title),
                   //헤더 전체 클릭시 확장
                   canTapOnHeader: true,
                   //패널 제목 설정
                   headerBuilder: (context, isExpanded) => Container(
+                      color: Colors.grey[850],
                       alignment: Alignment.center,
                       margin: const EdgeInsets.symmetric(vertical: 15),
                       child: Text(
                         title,
-                        style: const TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 16),
                       )),
                   //패널 펼쳤을 때 내용 설정
                   body: GridView.builder(
