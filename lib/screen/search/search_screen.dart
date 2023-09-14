@@ -42,11 +42,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 decoration: InputDecoration(
                   //채우기 색상 설정
                   filled: true,
-                  fillColor: Colors.blue[50],
+                  fillColor: Colors.white,
                   //테두리 둥글게 설정
                   border: const OutlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   //내부 여백 간격 설정
                   contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                   //입력전 힌트 설정
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   final String? label = tab.text;
                   return Container(
                     margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(color: Colors.blue[100]),
+                    decoration: BoxDecoration(color: Colors.grey[850]),
                     child: Center(
                       child: Text(
                         "검색 결과가 나올 $label 목록",
