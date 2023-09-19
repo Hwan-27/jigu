@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "180356464308",
+    "project_id": "jigu-h",
+    "storage_bucket": "jigu-h.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180356464308:android:5729fb059ec21de67861e1",
+        "android_client_info": {
+          "package_name": "com.example.jigu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6OoeC1WloYfwQk7i1C6795byUxIy_iZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

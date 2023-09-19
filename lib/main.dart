@@ -3,11 +3,26 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/home_screen.dart';
 import 'package:jigu/screen/mypage/mypage_screen.dart';
-import 'package:jigu/screen/noticeboard/noticeboard_screen.dart';
+import 'package:firebase_core/firebase_core.dart'; // Firebase Core 패키지
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Flutter 초기화
+
+  // Firebase 초기화
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID",
+    ),
+  );
+
   Fluttertoast.showToast(
-    msg: '설쩡완료', // 초기에는 빈 문자열로 설정
+    msg: '설쩡완료',
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.CENTER,
     fontSize: 16.0,
