@@ -11,18 +11,19 @@ void main() async {
   // Firebase 초기화
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID",
+      apiKey: "AIzaSyB6OoeC1WloYfwQk7i1C6795byUxIy_iZc",
+      authDomain:
+          "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
+      projectId: "project-180356464308",
+      storageBucket: "gs://jigu-h.appspot.com",
+      messagingSenderId: "180356464308",
+      appId: "1:180356464308:android:5729fb059ec21de67861e1",
       measurementId: "YOUR_MEASUREMENT_ID",
     ),
   );
 
   Fluttertoast.showToast(
-    msg: '설쩡완료',
+    msg: 'Jigu 어플 실행중',
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.CENTER,
     fontSize: 16.0,

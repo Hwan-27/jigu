@@ -38,17 +38,34 @@ class _LoginScreenState extends State<LoginScreen> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  const TextField(
+                  const SizedBox(height: 10),
+                  TextField(
                     decoration: InputDecoration(
-                        labelText: "전화번호 또는 이메일", border: OutlineInputBorder()),
+                      labelText: "전화번호 또는 이메일",
+                      labelStyle: const TextStyle(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.white.withOpacity(0.5))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2, color: Colors.blue)),
+                    ),
                   ),
                   const SizedBox(height: 20),
-                  const TextField(
+                  TextField(
                     //비밀번호 안보이게 설정
                     obscureText: true,
                     decoration: InputDecoration(
-                        labelText: "비밀번호", border: OutlineInputBorder()),
+                        labelText: "비밀번호",
+                        labelStyle: const TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.5))),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.white.withOpacity(0.5))),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.blue))),
                   ),
                   const SizedBox(height: 20),
                   Row(
@@ -63,7 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             controlAffinity: ListTileControlAffinity.leading,
                             visualDensity: const VisualDensity(
                                 vertical: -4, horizontal: -4),
-                            title: const Text("자동 로그인"),
+                            title: const Text(
+                              "자동 로그인",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             value: _outoLogin,
                             onChanged: (bool? value) {
                               setState(() {
@@ -80,7 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             controlAffinity: ListTileControlAffinity.leading,
                             visualDensity: const VisualDensity(
                                 vertical: -4, horizontal: -4),
-                            title: const Text("아이디 저장"),
+                            title: const Text(
+                              "아이디 저장",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             value: _outoId,
                             onChanged: (bool? value) {
                               setState(() {
@@ -92,11 +115,35 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    height: 55,
+                    height: 40,
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text("로그인", style: TextStyle(fontSize: 20)),
+                      child: const Text("로그인", style: TextStyle(fontSize: 16)),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 30,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          backgroundColor: Colors.white),
+                      child: Row(
+                        children: [
+                          Image.asset('images/google.png'),
+                          const SizedBox(
+                            width: 110,
+                          ),
+                          const Text("구글계정으로 로그인",
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
