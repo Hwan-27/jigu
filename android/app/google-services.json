@@ -12,7 +12,20 @@
           "package_name": "com.example.jigu"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "180356464308-8u6t85o55l2keum9vj67rg76dd2s72mh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jigu",
+            "certificate_hash": "febb738f713579bbabed9a276e1100062b8efe31"
+          }
+        },
+        {
+          "client_id": "180356464308-jurk8j7siu6l14v3dsqi0vkq06fkq254.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB6OoeC1WloYfwQk7i1C6795byUxIy_iZc"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

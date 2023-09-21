@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/login/login_forget_screen.dart';
 import 'package:jigu/screen/login/login_tos_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart'; // Firebase Core 패키지
+import 'package:google_sign_in/google_sign_in.dart'; // Google Sign-In 패키지
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -129,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: signInWithGoogle,
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
                           backgroundColor: Colors.white),
@@ -168,5 +171,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<User?> signInWithGoogle() async {
+    try {
+      print('구글계정 로그인');
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return null; // 사용자가 로그인을 취소한 경우
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential authResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = authResult.user;
+
+      return user;
+    } catch (error) {
+      print('로그인 오류: $error');
+      return null;
+    }
   }
 }

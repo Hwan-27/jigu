@@ -11,24 +11,15 @@ void main() async {
   // Firebase 초기화
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "AIzaSyB6OoeC1WloYfwQk7i1C6795byUxIy_iZc",
+      apiKey: "AIzaSyAd_SLEOBI-siiPSTSa5HeZe6CnV-VpHnU",
       authDomain:
           "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
-      projectId: "project-180356464308",
+      projectId: "jigu-h",
       storageBucket: "gs://jigu-h.appspot.com",
       messagingSenderId: "180356464308",
       appId: "1:180356464308:android:5729fb059ec21de67861e1",
       measurementId: "YOUR_MEASUREMENT_ID",
     ),
-  );
-
-  Fluttertoast.showToast(
-    msg: 'Jigu 어플 실행중',
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.CENTER,
-    fontSize: 16.0,
-    backgroundColor: Colors.grey[850]!,
-    textColor: Colors.white,
   );
 
   runApp(const App());
@@ -39,6 +30,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Firebase 초기화가 완료되면 토스트 메시지를 표시
+    Firebase.initializeApp().then((value) {
+      Fluttertoast.showToast(
+        msg: 'Firebase 연결 성공',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        fontSize: 16.0,
+        backgroundColor: Colors.green, // Firebase 초기화 성공 시 적절한 색상으로 변경
+        textColor: Colors.white,
+      );
+    });
+
     return GetMaterialApp(
       initialRoute: '/', // 초기 라우트를 홈 화면으로 설정
       routes: {
@@ -48,19 +51,20 @@ class App extends StatelessWidget {
       },
       theme: ThemeData(
         textTheme: TextTheme(
-            bodyLarge: TextStyle(color: Colors.white.withOpacity(0.8)),
-            bodyMedium: TextStyle(color: Colors.white.withOpacity(1)),
-            titleLarge: TextStyle(color: Colors.white.withOpacity(0.8))),
+          bodyLarge: TextStyle(color: Colors.white.withOpacity(0.8)),
+          bodyMedium: TextStyle(color: Colors.white.withOpacity(1)),
+          titleLarge: TextStyle(color: Colors.white.withOpacity(0.8)),
+        ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: Colors.grey[850],
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white.withOpacity(0.5)
-            // selectedLabelStyle: TextStyle(color: Colors.blueGrey[400]),
-            // unselectedLabelStyle: const TextStyle(color: Colors.white),
-            ),
+          backgroundColor: Colors.grey[850],
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.5),
+        ),
         appBarTheme: AppBarTheme(
-            backgroundColor: Colors.grey[850], elevation: 1), // 같은 색상 사용
-        scaffoldBackgroundColor: Colors.grey[850], // 같은 색상 사용
+          backgroundColor: Colors.grey[850],
+          elevation: 1,
+        ),
+        scaffoldBackgroundColor: Colors.grey[850],
       ),
     );
   }
