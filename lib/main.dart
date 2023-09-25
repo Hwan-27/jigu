@@ -4,22 +4,24 @@ import 'package:get/get.dart';
 import 'package:jigu/screen/home_screen.dart';
 import 'package:jigu/screen/mypage/mypage_screen.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase Core 패키지
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Flutter 초기화
 
   // Firebase 초기화
   await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyAd_SLEOBI-siiPSTSa5HeZe6CnV-VpHnU",
-      authDomain:
-          "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
-      projectId: "jigu-h",
-      storageBucket: "gs://jigu-h.appspot.com",
-      messagingSenderId: "180356464308",
-      appId: "1:180356464308:android:5729fb059ec21de67861e1",
-      measurementId: "YOUR_MEASUREMENT_ID",
-    ),
+    options: DefaultFirebaseOptions.currentPlatform,
+    // options: const FirebaseOptions(
+    //   apiKey: "AIzaSyAd_SLEOBI-siiPSTSa5HeZe6CnV-VpHnU",
+    //   authDomain:
+    //       "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
+    //   projectId: "jigu-h",
+    //   storageBucket: "gs://jigu-h.appspot.com",
+    //   messagingSenderId: "180356464308",
+    //   appId: "1:180356464308:android:5729fb059ec21de67861e1",
+    //   measurementId: "YOUR_MEASUREMENT_ID",
+    // ),
   );
 
   runApp(const App());

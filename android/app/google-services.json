@@ -1,44 +1,45 @@
 {
   "project_info": {
-    "project_number": "180356464308",
-    "project_id": "jigu-h",
-    "storage_bucket": "jigu-h.appspot.com"
+    "project_number": "31793334558",
+    "project_id": "jigu-h-ff716",
+    "storage_bucket": "jigu-h-ff716.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:180356464308:android:5729fb059ec21de67861e1",
+        "mobilesdk_app_id": "1:31793334558:android:912612a275cd682b70210f",
         "android_client_info": {
-          "package_name": "com.example.jigu"
+          "package_name": "com.android.application"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "180356464308-8u6t85o55l2keum9vj67rg76dd2s72mh.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.jigu",
-            "certificate_hash": "febb738f713579bbabed9a276e1100062b8efe31"
-          }
-        },
-        {
-          "client_id": "180356464308-jurk8j7siu6l14v3dsqi0vkq06fkq254.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB6OoeC1WloYfwQk7i1C6795byUxIy_iZc"
+          "current_key": "AIzaSyAQmG5avS2AiGhEKx5sS8lNGwYKlSC7fw0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31793334558:android:d6f100f57e7ecd1a70210f",
+        "android_client_info": {
+          "package_name": "com.example.jigu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQmG5avS2AiGhEKx5sS8lNGwYKlSC7fw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }
