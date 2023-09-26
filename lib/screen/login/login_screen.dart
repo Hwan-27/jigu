@@ -5,12 +5,61 @@ import 'package:jigu/screen/login/login_tos_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase Core 패키지
 import 'package:google_sign_in/google_sign_in.dart'; // Google Sign-In 패키지
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
+}
+
+bool isEmailValid(String email) {
+  final emailRegExp = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+  return emailRegExp.hasMatch(email);
+}
+
+final TextEditingController emailController = TextEditingController();
+final TextEditingController passwordController = TextEditingController();
+
+// Firebase 인증 인스턴스 가져오기
+final FirebaseAuth auth = FirebaseAuth.instance;
+// Firestore 인스턴스 가져오기
+final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+// 사용자 로그인 함수
+Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  try {
+    final UserCredential userCredential = await auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    final User? user = userCredential.user;
+
+    if (user != null) {
+      // Firestore에서 사용자 문서 가져오기
+      final DocumentSnapshot userDoc =
+          await firestore.collection('user').doc(user.uid).get();
+      if (userDoc.exists) {
+        // 사용자의 문서 ID와 UID 비교
+        if (userDoc.id == user.uid) {
+          return user;
+        } else {
+          // 문서 ID와 UID가 일치하지 않음
+          return null;
+        }
+      } else {
+        // 사용자 문서가 없음
+        return null;
+      }
+    } else {
+      // 사용자 로그인 실패
+      return null;
+    }
+  } catch (e) {
+    print('Error signing in: $e');
+    return null;
+  }
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -121,7 +170,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 40,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        String email = emailController.text;
+                        String password = passwordController.text;
+
+                        if (isEmailValid(email)) {
+                          // Firebase Authentication을 사용하여 로그인 시도
+                          signInWithEmailAndPassword(email, password);
+                        } else {
+                          // 유효하지 않은 이메일 주소라는 메시지를 사용자에게 표시
+                          // 예: ScaffoldMessenger.of(context).showSnackBar(...)
+                          print('이메일 형식이 아니야');
+                        }
+                      },
                       child: const Text("로그인", style: TextStyle(fontSize: 16)),
                     ),
                   ),

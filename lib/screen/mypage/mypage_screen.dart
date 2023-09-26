@@ -6,6 +6,7 @@ import 'package:jigu/screen/mypage/mypage_notice_screen.dart';
 import 'package:jigu/screen/mypage/mypage_question_screen.dart';
 import 'package:jigu/screen/mypage/mypage_seller_modify_screen.dart';
 import 'package:jigu/screen/mypage/mypage_setting_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MypageScreen extends StatefulWidget {
   const MypageScreen({super.key});
@@ -16,6 +17,36 @@ class MypageScreen extends StatefulWidget {
 
 class _MypageScreenState extends State<MypageScreen> {
   var common = true;
+  Map<String, dynamic>? userData;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromFirestore();
+  }
+
+  Future<void> fetchDataFromFirestore() async {
+    try {
+      // Firestore 인스턴스 생성
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      // 데이터를 가져올 컬렉션과 문서의 경로 설정
+      CollectionReference usersCollection = firestore.collection('user');
+      DocumentSnapshot userDocument =
+          await usersCollection.doc('namchu12').get();
+
+      // 가져온 데이터를 userData 변수에 저장
+      if (userDocument.exists) {
+        userData = userDocument.data() as Map<String, dynamic>;
+        setState(() {}); // 화면을 다시 그리도록 알림
+        print(userData);
+      } else {
+        print('User not found');
+      }
+    } catch (e) {
+      print('Error fetching data from Firestore: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +174,9 @@ class _MypageScreenState extends State<MypageScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("닉네임",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                Text(userData?['name'] ?? '',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 5),
                 const Text("서울 신림동", style: TextStyle(fontSize: 14)),
                 const SizedBox(height: 5),
