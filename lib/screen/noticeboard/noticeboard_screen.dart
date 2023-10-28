@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_kategorie_screen.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_place_screen.dart';
 import 'package:jigu/screen/search/search_screen.dart';
 import 'noticeboard_detail_screen.dart';
+import 'package:http/http.dart' as http;
 
 class NoticeboardScreen extends StatefulWidget {
   const NoticeboardScreen({super.key});
@@ -24,7 +28,35 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
     return value;
   }
 
-  var notices = ["정현진", "임정민", "김광호", "김기환", "정현진", "임정민", "김광호", "김기환"];
+  @override
+  void initState() {
+    super.initState();
+    ApiData();
+  }
+
+  //JSONPlaceHolder 데이터 값 가져오는 함수
+  Future<void> ApiData() async {
+    final response =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+    if (response.statusCode == 200) {
+      final List<Map<String, dynamic>> data = jsonDecode(response.body);
+
+      setState(() {
+        notices = data
+            .map((item) => {
+                  'title': item['title'].toString(),
+                  'body': item['body'].toString(),
+                })
+            .toList();
+      });
+    } else {
+      // API 호출은 성공했지만 응답이 200이 아닌 경우에 대한 처리
+      print('API 호출 실패 - 응답 코드: ${response.statusCode}');
+    }
+  }
+
+  var notices = [];
   var colorCode = [100, 300, 400, 500, 100, 300, 400, 500];
 
   @override
@@ -154,6 +186,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
           child: ListView.builder(
             itemCount: notices.length,
             itemBuilder: (context, index) {
+              final notice = notices[index];
               return Container(
                 decoration: const BoxDecoration(
                     border: Border(
@@ -190,12 +223,12 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       ),
                     ),
                     //Flexible 텍스트 넘침 방지
-                    Flexible(
+                    Card(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "홍보글 제목이 들어갑니다.",
+                          Text(
+                            notice['title'],
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
@@ -203,7 +236,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            "상세내용이 들어갑니다.",
+                            notice['body'],
                             maxLines: 2,
                             style: TextStyle(
                                 fontSize: 16,
