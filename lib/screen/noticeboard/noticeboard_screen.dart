@@ -28,36 +28,38 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
     return value;
   }
 
+  var notices = [];
+  var colorCode = [100, 300, 400, 500, 100, 300, 400, 500];
+
   @override
   void initState() {
     super.initState();
-    ApiData();
+    fetchData().then((data) {
+      if (data != null) {
+        setState(() {
+          notices = data;
+        });
+      }
+    }).catchError((error) {
+      print('Error: $error');
+    });
   }
 
-  //JSONPlaceHolder 데이터 값 가져오는 함수
-  Future<void> ApiData() async {
+  Future<List<Map<String, dynamic>>?> fetchData() async {
     final response =
         await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
 
     if (response.statusCode == 200) {
-      final List<Map<String, dynamic>> data = jsonDecode(response.body);
-
-      setState(() {
-        notices = data
-            .map((item) => {
-                  'title': item['title'].toString(),
-                  'body': item['body'].toString(),
-                })
-            .toList();
-      });
+      final List<dynamic> jsonData = jsonDecode(response.body);
+      final List<Map<String, dynamic>> data =
+          jsonData.map((item) => item as Map<String, dynamic>).toList();
+      print('데이터를 가져옴');
+      return data;
     } else {
-      // API 호출은 성공했지만 응답이 200이 아닌 경우에 대한 처리
-      print('API 호출 실패 - 응답 코드: ${response.statusCode}');
+      print('데이터를 가져오지 못했음');
+      throw Exception('Failed to load data');
     }
   }
-
-  var notices = [];
-  var colorCode = [100, 300, 400, 500, 100, 300, 400, 500];
 
   @override
   Widget build(BuildContext context) {
@@ -203,44 +205,35 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       decoration: const BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       color: Colors.grey.withOpacity(0.8),
-                        //       spreadRadius: 1,
-                        //       blurRadius: 5,
-                        //       offset: const Offset(0, 3)),
-                        // ],
                       ),
                       child: Center(
                         child: Icon(
                           Icons.camera_alt,
                           color: Colors.white.withOpacity(0.8),
                         ),
-                        //     child: Text(
-                        //   "메인 사진",
-                        //   style: TextStyle(color: Colors.white),
-                        // )
                       ),
                     ),
                     //Flexible 텍스트 넘침 방지
-                    Card(
+                    Flexible(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             notice['title'],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w300),
+                                fontWeight: FontWeight.w300,
+                                backgroundColor: Colors.transparent),
                           ),
                           const SizedBox(height: 10),
                           Text(
                             notice['body'],
                             maxLines: 2,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 16,
-                                color: Colors.white.withOpacity(0.9)),
+                                color: Colors.white,
+                                backgroundColor: Colors.transparent),
                           ),
                         ],
                       ),
