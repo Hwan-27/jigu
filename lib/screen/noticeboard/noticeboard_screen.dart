@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
-
+import 'package:jigu/Class/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_kategorie_screen.dart';
@@ -15,6 +15,8 @@ class NoticeboardScreen extends StatefulWidget {
   @override
   State<NoticeboardScreen> createState() => _NoticeboardScreenState();
 }
+
+Api_Service apiService = Api_Service();
 
 class _NoticeboardScreenState extends State<NoticeboardScreen> {
   //선택하는 값 초기화
@@ -34,7 +36,8 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   @override
   void initState() {
     super.initState();
-    fetchData().then((data) {
+
+    apiService.getData().then((data) {
       if (data != null) {
         setState(() {
           notices = data;
@@ -45,21 +48,21 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
     });
   }
 
-  Future<List<Map<String, dynamic>>?> fetchData() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+  // Future<List<Map<String, dynamic>>?> fetchData() async {
+  //   final response =
+  //       await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
 
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonData = jsonDecode(response.body);
-      final List<Map<String, dynamic>> data =
-          jsonData.map((item) => item as Map<String, dynamic>).toList();
-      print('데이터를 가져옴');
-      return data;
-    } else {
-      print('데이터를 가져오지 못했음');
-      throw Exception('Failed to load data');
-    }
-  }
+  //   if (response.statusCode == 200) {
+  //     final List<dynamic> jsonData = jsonDecode(response.body);
+  //     final List<Map<String, dynamic>> data =
+  //         jsonData.map((item) => item as Map<String, dynamic>).toList();
+  //     print('데이터를 가져옴');
+  //     return data;
+  //   } else {
+  //     print('데이터를 가져오지 못했음');
+  //     throw Exception('Failed to load data');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
