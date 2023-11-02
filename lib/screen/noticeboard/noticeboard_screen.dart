@@ -33,20 +33,20 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   var notices = [];
   var colorCode = [100, 300, 400, 500, 100, 300, 400, 500];
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    apiService.getData().then((data) {
-      if (data != null) {
-        setState(() {
-          notices = data;
-        });
-      }
-    }).catchError((error) {
-      print('Error: $error');
-    });
-  }
+  //   apiService.getData().then((data) {
+  //     if (data != null) {
+  //       setState(() {
+  //         notices = data;
+  //       });
+  //     }
+  //   }).catchError((error) {
+  //     print('Error: $error');
+  //   });
+  // }
 
   // Future<List<Map<String, dynamic>>?> fetchData() async {
   //   final response =
@@ -67,185 +67,204 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Title(
-          color: Colors.white,
-          child: SizedBox(
-            width: 107,
-            height: 55,
-            child: ElevatedButton(
-              onPressed: () async {
-                try {
-                  selectPlace =
-                      await Get.to(() => const NoticeboardPlaceScreen());
-                } catch (e) {
-                  selectPlace = selectPlace;
-                }
-                setState(() {});
-              },
-              style: ElevatedButton.styleFrom(
-                  elevation: 0, backgroundColor: Colors.grey[850]),
-              child: Row(
-                children: [
-                  Text(
-                    selcetValue(selectPlace, "덕천동"),
-                    style: const TextStyle(
-                        fontSize: 17,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.white,
-                  ),
-                ],
+        appBar: AppBar(
+          title: Title(
+            color: Colors.white,
+            child: SizedBox(
+              width: 107,
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () async {
+                  try {
+                    selectPlace =
+                        await Get.to(() => const NoticeboardPlaceScreen());
+                  } catch (e) {
+                    selectPlace = selectPlace;
+                  }
+                  setState(() {});
+                },
+                style: ElevatedButton.styleFrom(
+                    elevation: 0, backgroundColor: Colors.grey[850]),
+                child: Row(
+                  children: [
+                    Text(
+                      selcetValue(selectPlace, "덕천동"),
+                      style: const TextStyle(
+                          fontSize: 17,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        actions: [
-          //이 버튼 만드는데 3일 걸림
-          //카테고리 버튼 설정
-          ElevatedButton(
-            //카테고리 버튼 누르면 화면 전환
-            onPressed: () async {
-              //선택할 경우
-              try {
-                selectKategorie =
-                    await Get.to(() => const NoticeboardKategorieScreen());
-                //선택안하고 돌아올경우
-              } catch (e) {
-                selectKategorie = selectKategorie;
-              }
-              setState(() {});
-            },
-            //버튼 입체감 없애기
-            style: ElevatedButton.styleFrom(
-                elevation: 0, backgroundColor: Colors.grey[850]),
-            //텍스트 설정
-
-            child: Row(
-              children: [
-                Text(
-                  selcetValue(selectKategorie, ""),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  width: 3,
-                ),
-                const Icon(
-                  Icons.tune,
-                  color: Colors.white,
-                )
-              ],
-            ),
-          ),
-          // ElevatedButton(
-          //   onPressed: () async {
-          //     // 선택할 경우
-          //     try {
-          //       selectPlace =
-          //           await Get.to(() => const NoticeboardPlaceScreen());
-          //       // 선택안하고 돌아올경우
-          //     } catch (e) {
-          //       selectPlace = selectPlace;
-          //     }
-          //     setState(() {});
-          //   },
-          //   style: ElevatedButton.styleFrom(elevation: 0),
-          //   child: Row(
-          //     children: [
-          //       const Icon(
-          //         Icons.keyboard_double_arrow_down,
-          //       ),
-          //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
-          //       Text(
-          //         selcetValue(selectPlace, "지역 설정"),
-          //         style: const TextStyle(color: Colors.white, fontSize: 17),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-
-          //검색화면에 검색과 토글버튼 생성 예정
-          IconButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchScreen(),
-                    ));
+          actions: [
+            //이 버튼 만드는데 3일 걸림
+            //카테고리 버튼 설정
+            ElevatedButton(
+              //카테고리 버튼 누르면 화면 전환
+              onPressed: () async {
+                //선택할 경우
+                try {
+                  selectKategorie =
+                      await Get.to(() => const NoticeboardKategorieScreen());
+                  //선택안하고 돌아올경우
+                } catch (e) {
+                  selectKategorie = selectKategorie;
+                }
+                setState(() {});
               },
-              icon: const Icon(Icons.search)),
-        ],
-      ),
-      body: GestureDetector(
-          //홍보글을 누르면 해당 상세내용으로 넘어감
-          onTap: () {
-            Get.to(() => const NoticeboardDetailScreen());
-          },
-          child: ListView.builder(
-            itemCount: notices.length,
-            itemBuilder: (context, index) {
-              final notice = notices[index];
-              return Container(
-                decoration: const BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(width: 0.1, color: Colors.grey))),
-                padding: const EdgeInsets.all(15),
-                height: 120,
-                //color: Colors.indigo[colorCode[index]],
-                child: Row(
-                  children: [
-                    Container(
-                      height: 90,
-                      width: 90,
-                      margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+              //버튼 입체감 없애기
+              style: ElevatedButton.styleFrom(
+                  elevation: 0, backgroundColor: Colors.grey[850]),
+              //텍스트 설정
+
+              child: Row(
+                children: [
+                  Text(
+                    selcetValue(selectKategorie, ""),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    width: 3,
+                  ),
+                  const Icon(
+                    Icons.tune,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+            ),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     // 선택할 경우
+            //     try {
+            //       selectPlace =
+            //           await Get.to(() => const NoticeboardPlaceScreen());
+            //       // 선택안하고 돌아올경우
+            //     } catch (e) {
+            //       selectPlace = selectPlace;
+            //     }
+            //     setState(() {});
+            //   },
+            //   style: ElevatedButton.styleFrom(elevation: 0),
+            //   child: Row(
+            //     children: [
+            //       const Icon(
+            //         Icons.keyboard_double_arrow_down,
+            //       ),
+            //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
+            //       Text(
+            //         selcetValue(selectPlace, "지역 설정"),
+            //         style: const TextStyle(color: Colors.white, fontSize: 17),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
+            //검색화면에 검색과 토글버튼 생성 예정
+            IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ));
+                },
+                icon: const Icon(Icons.search)),
+          ],
+        ),
+        body: FutureBuilder<List<Map<String, dynamic>>?>(
+          future: Api_Service().getData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              //오류
+              return Center(
+                child: Text('Error :${snapshot.error}'),
+              );
+            } else if (!snapshot.hasData) {
+              return const Center(child: Text('데이터가 없습니다.'));
+            } else {
+              // 데이터를 표시할 내용
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() => const NoticeboardDetailScreen());
+                },
+                child: ListView.builder(
+                  itemCount: snapshot.data?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final notice = snapshot.data?[index];
+                    return Container(
                       decoration: const BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.white.withOpacity(0.8),
+                        border: Border(
+                          bottom: BorderSide(width: 0.1, color: Colors.grey),
                         ),
                       ),
-                    ),
-                    //Flexible 텍스트 넘침 방지
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: const EdgeInsets.all(15),
+                      height: 120,
+                      child: Row(
                         children: [
-                          Text(
-                            notice['title'],
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w300,
-                                backgroundColor: Colors.transparent),
+                          Container(
+                            height: 90,
+                            width: 90,
+                            margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                            decoration: const BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.camera_alt,
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                            ),
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            notice['body'],
-                            maxLines: 2,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                backgroundColor: Colors.transparent),
-                          ),
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  notice?['title'],
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
+                                    backgroundColor: Colors.transparent,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  notice?['body'],
+                                  maxLines: 2,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    backgroundColor: Colors.transparent,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
-                    )
-                  ],
+                    );
+                  },
                 ),
               );
-            },
-          )),
-    );
+            }
+          },
+        ));
   }
 }
