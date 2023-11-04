@@ -67,123 +67,124 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Title(
-            color: Colors.white,
-            child: SizedBox(
-              width: 107,
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () async {
-                  try {
-                    selectPlace =
-                        await Get.to(() => const NoticeboardPlaceScreen());
-                  } catch (e) {
-                    selectPlace = selectPlace;
-                  }
-                  setState(() {});
-                },
-                style: ElevatedButton.styleFrom(
-                    elevation: 0, backgroundColor: Colors.grey[850]),
-                child: Row(
-                  children: [
-                    Text(
-                      selcetValue(selectPlace, "덕천동"),
-                      style: const TextStyle(
-                          fontSize: 17,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            //이 버튼 만드는데 3일 걸림
-            //카테고리 버튼 설정
-            ElevatedButton(
-              //카테고리 버튼 누르면 화면 전환
+      appBar: AppBar(
+        title: Title(
+          color: Colors.white,
+          child: SizedBox(
+            width: 107,
+            height: 55,
+            child: ElevatedButton(
               onPressed: () async {
-                //선택할 경우
                 try {
-                  selectKategorie =
-                      await Get.to(() => const NoticeboardKategorieScreen());
-                  //선택안하고 돌아올경우
+                  selectPlace =
+                      await Get.to(() => const NoticeboardPlaceScreen());
                 } catch (e) {
-                  selectKategorie = selectKategorie;
+                  selectPlace = selectPlace;
                 }
                 setState(() {});
               },
-              //버튼 입체감 없애기
               style: ElevatedButton.styleFrom(
                   elevation: 0, backgroundColor: Colors.grey[850]),
-              //텍스트 설정
-
               child: Row(
                 children: [
                   Text(
-                    selcetValue(selectKategorie, ""),
+                    selcetValue(selectPlace, "덕천동"),
                     style: const TextStyle(
-                        color: Colors.white,
                         fontSize: 17,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    width: 3,
-                  ),
                   const Icon(
-                    Icons.tune,
+                    Icons.keyboard_arrow_down,
                     color: Colors.white,
-                  )
+                  ),
                 ],
               ),
             ),
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     // 선택할 경우
-            //     try {
-            //       selectPlace =
-            //           await Get.to(() => const NoticeboardPlaceScreen());
-            //       // 선택안하고 돌아올경우
-            //     } catch (e) {
-            //       selectPlace = selectPlace;
-            //     }
-            //     setState(() {});
-            //   },
-            //   style: ElevatedButton.styleFrom(elevation: 0),
-            //   child: Row(
-            //     children: [
-            //       const Icon(
-            //         Icons.keyboard_double_arrow_down,
-            //       ),
-            //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
-            //       Text(
-            //         selcetValue(selectPlace, "지역 설정"),
-            //         style: const TextStyle(color: Colors.white, fontSize: 17),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-
-            //검색화면에 검색과 토글버튼 생성 예정
-            IconButton(
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SearchScreen(),
-                      ));
-                },
-                icon: const Icon(Icons.search)),
-          ],
+          ),
         ),
-        body: FutureBuilder<List<Map<String, dynamic>>?>(
+        actions: [
+          //이 버튼 만드는데 3일 걸림
+          //카테고리 버튼 설정
+          ElevatedButton(
+            //카테고리 버튼 누르면 화면 전환
+            onPressed: () async {
+              //선택할 경우
+              try {
+                selectKategorie =
+                    await Get.to(() => const NoticeboardKategorieScreen());
+                //선택안하고 돌아올경우
+              } catch (e) {
+                selectKategorie = selectKategorie;
+              }
+              setState(() {});
+            },
+            //버튼 입체감 없애기
+            style: ElevatedButton.styleFrom(
+                elevation: 0, backgroundColor: Colors.grey[850]),
+            //텍스트 설정
+
+            child: Row(
+              children: [
+                Text(
+                  selcetValue(selectKategorie, ""),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  width: 3,
+                ),
+                const Icon(
+                  Icons.tune,
+                  color: Colors.white,
+                )
+              ],
+            ),
+          ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     // 선택할 경우
+          //     try {
+          //       selectPlace =
+          //           await Get.to(() => const NoticeboardPlaceScreen());
+          //       // 선택안하고 돌아올경우
+          //     } catch (e) {
+          //       selectPlace = selectPlace;
+          //     }
+          //     setState(() {});
+          //   },
+          //   style: ElevatedButton.styleFrom(elevation: 0),
+          //   child: Row(
+          //     children: [
+          //       const Icon(
+          //         Icons.keyboard_double_arrow_down,
+          //       ),
+          //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
+          //       Text(
+          //         selcetValue(selectPlace, "지역 설정"),
+          //         style: const TextStyle(color: Colors.white, fontSize: 17),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+
+          //검색화면에 검색과 토글버튼 생성 예정
+          IconButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ));
+              },
+              icon: const Icon(Icons.search)),
+        ],
+      ),
+      body: Column(children: [
+        FutureBuilder<List<Map<String, dynamic>>?>(
           future: Api_Service().getData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -202,6 +203,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                   Get.to(() => const NoticeboardDetailScreen());
                 },
                 child: ListView.builder(
+                  shrinkWrap: true,
                   itemCount: snapshot.data?.length ?? 0,
                   itemBuilder: (context, index) {
                     final notice = snapshot.data?[index];
@@ -265,6 +267,14 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
               );
             }
           },
-        ));
+        ),
+        TextButton(
+          onPressed: () {
+            // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+          },
+          child: Text('버튼 텍스트'),
+        ),
+      ]),
+    );
   }
 }

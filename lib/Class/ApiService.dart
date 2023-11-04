@@ -13,9 +13,13 @@ class ApiPage extends StatefulWidget {
 class Api_Service extends State<ApiPage> {
   Future<List<Map<String, dynamic>>?> getData() async {
     final dio = Dio();
-    final response =
-        await dio.get('https://jsonplaceholder.typicode.com/posts');
 
+    //헤더 추가
+    dio.options.headers['getHeader'] = 'getValue';
+
+    final response =
+        //await dio.get('https://jsonplaceholder.typicode.com/posts');
+        await dio.get('http://localhost:4000/api/getitems');
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = response.data;
 
@@ -27,6 +31,18 @@ class Api_Service extends State<ApiPage> {
       throw Exception('Failed to load data');
     }
     return null;
+  }
+
+  Future<void> postData(Map<String, dynamic> data) async {
+    final dio = Dio();
+    final response =
+        await dio.post('http://localhost:4000/apiPostitems', data: data);
+
+    if (response.statusCode == 200) {
+      print('데이터가 전송되었습니다.');
+    } else {
+      print('데이터 전송에 실패하였습니다.');
+    }
   }
 
   @override
