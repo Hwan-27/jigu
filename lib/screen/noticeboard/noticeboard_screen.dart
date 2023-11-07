@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:html';
 import 'package:jigu/Class/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,6 @@ import 'package:jigu/screen/noticeboard/noticeboard_kategorie_screen.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_place_screen.dart';
 import 'package:jigu/screen/search/search_screen.dart';
 import 'noticeboard_detail_screen.dart';
-import 'package:http/http.dart' as http;
 
 class NoticeboardScreen extends StatefulWidget {
   const NoticeboardScreen({super.key});
@@ -238,7 +235,8 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  notice?['title'],
+                                  notice?['title'] ??
+                                      '', // title이 null이면 빈 문자열 반환
                                   style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -248,7 +246,8 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  notice?['body'],
+                                  notice?['body'] ??
+                                      '', // body가 null이면 빈 문자열 반환
                                   maxLines: 2,
                                   style: const TextStyle(
                                     fontSize: 16,
@@ -272,7 +271,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
           onPressed: () {
             // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
           },
-          child: Text('버튼 텍스트'),
+          child: const Text('버튼 텍스트'),
         ),
       ]),
     );

@@ -23,9 +23,12 @@ class Api_Service extends State<ApiPage> {
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = response.data;
 
-      final List<Map<String, dynamic>> data =
-          jsonData.map((item) => item as Map<String, dynamic>).toList();
+      final List<Map<String, dynamic>> data = jsonData
+          .where((item) => item != null) // Remove null items
+          .map((item) => item as Map<String, dynamic>)
+          .toList();
       print('데이터를 가져옴');
+      print(data);
       return data;
     } else {
       throw Exception('Failed to load data');
