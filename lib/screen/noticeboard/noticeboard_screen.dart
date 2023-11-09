@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:jigu/Class/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -269,10 +270,52 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
         ),
         TextButton(
           onPressed: () {
-            // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+            showModalBottomSheet(
+              context: context,
+              builder: (BuildContext context) {
+                String title = '';
+                String body = '';
+
+                return Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: 'Title'),
+                      onChanged: (value) {
+                        title = value;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: 'Body'),
+                      onChanged: (value) {
+                        body = value;
+                      },
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // POST 요청 보내기
+                        final dio = Dio();
+                        final response = await dio.post(
+                          'http://localhost:4000/api/Postitems',
+                          data: {
+                            'title': title,
+                            'body': body,
+                          },
+                        );
+
+                        if (response.statusCode == 200) {
+                          Navigator.pop(context); // 모달 창 닫기
+                          // 성공 메시지를 사용자에게 보여줄 수 있음
+                        }
+                      },
+                      child: const Text('저장'),
+                    ),
+                  ],
+                );
+              },
+            );
           },
-          child: const Text('버튼 텍스트'),
-        ),
+          child: const Text('모달 열기'),
+        )
       ]),
     );
   }
