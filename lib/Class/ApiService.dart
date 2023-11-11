@@ -38,9 +38,11 @@ class Api_Service extends State<ApiPage> {
 
   Future<void> postData(Map<String, dynamic> data) async {
     final dio = Dio();
+    print(data);
     final response =
-        await dio.post('http://localhost:4000/apiPostitems', data: data);
+        await dio.post('http://localhost:4000/api/Postitems', data: data);
 
+    print('실행댐2');
     if (response.statusCode == 200) {
       print('데이터가 전송되었습니다.');
     } else {

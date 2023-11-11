@@ -236,8 +236,8 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  notice?['title'] ??
-                                      '', // title이 null이면 빈 문자열 반환
+                                  notice?['TITLE'] ??
+                                      '1', // title이 null이면 빈 문자열 반환
                                   style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -247,8 +247,9 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  notice?['body'] ??
-                                      '', // body가 null이면 빈 문자열 반환
+                                  notice?['CONTENT'] ??
+                                      '1', // body가 null이면 빈 문자열 반환
+
                                   maxLines: 2,
                                   style: const TextStyle(
                                     fontSize: 16,
@@ -268,54 +269,78 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
             }
           },
         ),
-        TextButton(
-          onPressed: () {
+        InkWell(
+          onTap: () {
             showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
                 String title = '';
-                String body = '';
-
-                return Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Title'),
-                      onChanged: (value) {
-                        title = value;
-                      },
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Body'),
-                      onChanged: (value) {
-                        body = value;
-                      },
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        // POST 요청 보내기
-                        final dio = Dio();
-                        final response = await dio.post(
-                          'http://localhost:4000/api/Postitems',
-                          data: {
-                            'title': title,
-                            'body': body,
-                          },
-                        );
-
-                        if (response.statusCode == 200) {
-                          Navigator.pop(context); // 모달 창 닫기
-                          // 성공 메시지를 사용자에게 보여줄 수 있음
-                        }
-                      },
-                      child: const Text('저장'),
-                    ),
-                  ],
+                String Content = '';
+                String NoCd = '';
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        decoration:
+                            const InputDecoration(labelText: 'NoticeCd'),
+                        onChanged: (value) {
+                          NoCd = value;
+                        },
+                      ),
+                      TextField(
+                        decoration: const InputDecoration(labelText: 'Title'),
+                        onChanged: (value) {
+                          title = value;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      TextField(
+                        decoration: const InputDecoration(labelText: 'Content'),
+                        onChanged: (value) {
+                          Content = value;
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: () async {
+                          print('실행댐1');
+                          Api_Service().postData({
+                            'NoticeCd': NoCd,
+                            'TITLE': title,
+                            'CONTENT': Content
+                          });
+                        },
+                        child: Text('게시글 추가'),
+                      ),
+                    ],
+                  ),
                 );
               },
             );
           },
-          child: const Text('모달 열기'),
-        )
+          child: Container(
+            width: 100,
+            height: 100,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.edit_document,
+                  color: Colors.deepOrange,
+                  size: 36,
+                ), // 아이콘
+                SizedBox(width: 8),
+                //Text('게시글 추가', style: TextStyle(color: Colors.orange)),
+              ],
+            ),
+          ),
+        ),
       ]),
     );
   }
