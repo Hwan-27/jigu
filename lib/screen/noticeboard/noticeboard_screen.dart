@@ -283,13 +283,6 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextField(
-                        decoration:
-                            const InputDecoration(labelText: 'NoticeCd'),
-                        onChanged: (value) {
-                          NoCd = value;
-                        },
-                      ),
-                      TextField(
                         decoration: const InputDecoration(labelText: 'Title'),
                         onChanged: (value) {
                           title = value;
@@ -305,12 +298,8 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () async {
-                          print('실행댐1');
-                          Api_Service().postData({
-                            'NoticeCd': NoCd,
-                            'TITLE': title,
-                            'CONTENT': Content
-                          });
+                          Api_Service()
+                              .postData({'TITLE': title, 'CONTENT': Content});
                         },
                         child: Text('게시글 추가'),
                       ),

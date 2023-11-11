@@ -28,7 +28,7 @@ class Api_Service extends State<ApiPage> {
           .map((item) => item as Map<String, dynamic>)
           .toList();
       print('데이터를 가져옴');
-      print(data);
+
       return data;
     } else {
       throw Exception('Failed to load data');
@@ -42,7 +42,6 @@ class Api_Service extends State<ApiPage> {
     final response =
         await dio.post('http://localhost:4000/api/Postitems', data: data);
 
-    print('실행댐2');
     if (response.statusCode == 200) {
       print('데이터가 전송되었습니다.');
     } else {
