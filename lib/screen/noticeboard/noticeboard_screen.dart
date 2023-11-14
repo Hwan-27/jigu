@@ -16,6 +16,8 @@ class NoticeboardScreen extends StatefulWidget {
 
 Api_Service apiService = Api_Service();
 
+RxBool isLiked = false.obs;
+
 class _NoticeboardScreenState extends State<NoticeboardScreen> {
   //선택하는 값 초기화
   var selectKategorie = "";
@@ -30,37 +32,6 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
 
   var notices = [];
   var colorCode = [100, 300, 400, 500, 100, 300, 400, 500];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   apiService.getData().then((data) {
-  //     if (data != null) {
-  //       setState(() {
-  //         notices = data;
-  //       });
-  //     }
-  //   }).catchError((error) {
-  //     print('Error: $error');
-  //   });
-  // }
-
-  // Future<List<Map<String, dynamic>>?> fetchData() async {
-  //   final response =
-  //       await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-
-  //   if (response.statusCode == 200) {
-  //     final List<dynamic> jsonData = jsonDecode(response.body);
-  //     final List<Map<String, dynamic>> data =
-  //         jsonData.map((item) => item as Map<String, dynamic>).toList();
-  //     print('데이터를 가져옴');
-  //     return data;
-  //   } else {
-  //     print('데이터를 가져오지 못했음');
-  //     throw Exception('Failed to load data');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +73,68 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
           ),
         ),
         actions: [
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  String title = '';
+                  String Content = '';
+                  String NoCd = '';
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextField(
+                          decoration: const InputDecoration(labelText: 'Title'),
+                          onChanged: (value) {
+                            title = value;
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        TextField(
+                          decoration:
+                              const InputDecoration(labelText: 'Content'),
+                          onChanged: (value) {
+                            Content = value;
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () async {
+                            Api_Service()
+                                .postData({'TITLE': title, 'CONTENT': Content});
+                          },
+                          child: const Text('게시글 추가'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+            child: Container(
+              width: 70,
+              height: 100,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.edit_document,
+                    color: Colors.deepOrange,
+                    size: 30,
+                  ), // 아이콘
+                  SizedBox(width: 6.5),
+                  //Text('게시글 추가', style: TextStyle(color: Colors.orange)),
+                ],
+              ),
+            ),
+          ),
           //이 버튼 만드는데 3일 걸림
           //카테고리 버튼 설정
           ElevatedButton(
@@ -232,31 +265,58 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                             ),
                           ),
                           Flexible(
-                            child: Column(
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  notice?['TITLE'] ??
-                                      '1', // title이 null이면 빈 문자열 반환
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w300,
-                                    backgroundColor: Colors.transparent,
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        notice?['title'] ?? '1',
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w300,
+                                          backgroundColor: Colors.transparent,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        notice?['content'] ?? '1',
+                                        maxLines: 2,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          backgroundColor: Colors.transparent,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  notice?['CONTENT'] ??
-                                      '1', // body가 null이면 빈 문자열 반환
-
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    backgroundColor: Colors.transparent,
-                                  ),
-                                ),
+                                Obx(() {
+                                  return Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 40,
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          isLiked.value = !isLiked.value;
+                                        },
+                                        icon: Icon(
+                                          isLiked.value
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          color: isLiked.value
+                                              ? Colors.red[400]
+                                              : Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }),
                               ],
                             ),
                           )
@@ -268,67 +328,6 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
               );
             }
           },
-        ),
-        InkWell(
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (BuildContext context) {
-                String title = '';
-                String Content = '';
-                String NoCd = '';
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        decoration: const InputDecoration(labelText: 'Title'),
-                        onChanged: (value) {
-                          title = value;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        decoration: const InputDecoration(labelText: 'Content'),
-                        onChanged: (value) {
-                          Content = value;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () async {
-                          Api_Service()
-                              .postData({'TITLE': title, 'CONTENT': Content});
-                        },
-                        child: Text('게시글 추가'),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-          child: Container(
-            width: 100,
-            height: 100,
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.edit_document,
-                  color: Colors.deepOrange,
-                  size: 36,
-                ), // 아이콘
-                SizedBox(width: 8),
-                //Text('게시글 추가', style: TextStyle(color: Colors.orange)),
-              ],
-            ),
-          ),
         ),
       ]),
     );
