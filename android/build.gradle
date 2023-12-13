@@ -12,6 +12,22 @@ buildscript {
         
     }
 }
+plugins {
+  // ...
+
+  // Add the dependency for the Google services Gradle plugin
+  id("com.google.gms.google-services") version "4.4.0" apply false
+
+}
+
+android {
+    // ...
+    defaultConfig {
+        applicationId "com.jigu.package.name"  // 패키지 이름으로 설정
+        // ...
+    }
+    // ...
+}
 
 allprojects {
     repositories {

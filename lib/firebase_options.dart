@@ -44,21 +44,17 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCMm9rC1WeoO8KLN1cmsCdqeJkAETeNrTg',
-    appId: '1:31793334558:web:0f87039cc291735570210f',
-    messagingSenderId: '31793334558',
-    projectId: 'jigu-h-ff716',
-    authDomain: 'jigu-h-ff716.firebaseapp.com',
-    storageBucket: 'jigu-h-ff716.appspot.com',
-    measurementId: 'G-K31FNE97LR',
+    apiKey: 'AIzaSyAyepXdaCliZF-XSwzbou24XdeSYNC_Ttw',
+    appId: '1:945525674232:android:e8bd608afda96415132b0d',
+    messagingSenderId: '945525674232',
+    projectId: 'fir-test-d7d6e',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAQmG5avS2AiGhEKx5sS8lNGwYKlSC7fw0',
-    appId: '1:31793334558:android:d6f100f57e7ecd1a70210f',
-    messagingSenderId: '31793334558',
-    projectId: 'jigu-h-ff716',
-    storageBucket: 'jigu-h-ff716.appspot.com',
+    apiKey: 'AIzaSyAyepXdaCliZF-XSwzbou24XdeSYNC_Ttw',
+    appId: '1:945525674232:android:e8bd608afda96415132b0d',
+    messagingSenderId: '945525674232',
+    projectId: 'fir-test-d7d6e',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

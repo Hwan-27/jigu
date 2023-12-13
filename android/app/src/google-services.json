@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "181197621500",
+    "project_id": "jigu-d26f7",
+    "storage_bucket": "jigu-d26f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181197621500:android:0f13646521022e76bf6f79",
+        "android_client_info": {
+          "package_name": "com.jigu.package.name"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG2U5JM2J9A4tPaJY-zFaC9wSm6q0gIpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

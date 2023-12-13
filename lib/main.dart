@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:jigu/screen/home_screen.dart';
 import 'package:jigu/screen/mypage/mypage_screen.dart';
@@ -7,43 +6,25 @@ import 'package:firebase_core/firebase_core.dart'; // Firebase Core 패키지
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Flutter 초기화
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // Firebase 초기화
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-    // options: const FirebaseOptions(
-    //   apiKey: "AIzaSyAd_SLEOBI-siiPSTSa5HeZe6CnV-VpHnU",
-    //   authDomain:
-    //       "180356464308-95g0qdt944m7on819gi3u0pa4hjhsr6m.apps.googleusercontent.com",
-    //   projectId: "jigu-h",
-    //   storageBucket: "gs://jigu-h.appspot.com",
-    //   messagingSenderId: "180356464308",
-    //   appId: "1:180356464308:android:5729fb059ec21de67861e1",
-    //   measurementId: "YOUR_MEASUREMENT_ID",
-    // ),
-  );
-
-  runApp(const App());
+  try {
+    // Firebase 초기화
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    print('Firebase 초기화 성공');
+    runApp(const App());
+  } catch (e) {
+    print('Firebase 초기화 실패');
+  }
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Firebase 초기화가 완료되면 토스트 메시지를 표시
-    Firebase.initializeApp().then((value) {
-      Fluttertoast.showToast(
-        msg: 'Firebase 연결 성공',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        fontSize: 16.0,
-        backgroundColor: Colors.green, // Firebase 초기화 성공 시 적절한 색상으로 변경
-        textColor: Colors.white,
-      );
-    });
-
     return GetMaterialApp(
       initialRoute: '/', // 초기 라우트를 홈 화면으로 설정
       routes: {

@@ -2,10 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:jigu/Class/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jigu/Class/FirebaseService.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_kategorie_screen.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_place_screen.dart';
 import 'package:jigu/screen/search/search_screen.dart';
 import 'noticeboard_detail_screen.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class NoticeboardScreen extends StatefulWidget {
   const NoticeboardScreen({super.key});
@@ -16,7 +18,7 @@ class NoticeboardScreen extends StatefulWidget {
 
 Api_Service apiService = Api_Service();
 
-RxBool isLiked = false.obs;
+FirebaseService firebase_ = FirebaseService();
 
 class _NoticeboardScreenState extends State<NoticeboardScreen> {
   //선택하는 값 초기화
@@ -80,7 +82,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                 builder: (BuildContext context) {
                   String title = '';
                   String Content = '';
-                  String NoCd = '';
+
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -174,32 +176,6 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
               ],
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: () async {
-          //     // 선택할 경우
-          //     try {
-          //       selectPlace =
-          //           await Get.to(() => const NoticeboardPlaceScreen());
-          //       // 선택안하고 돌아올경우
-          //     } catch (e) {
-          //       selectPlace = selectPlace;
-          //     }
-          //     setState(() {});
-          //   },
-          //   style: ElevatedButton.styleFrom(elevation: 0),
-          //   child: Row(
-          //     children: [
-          //       const Icon(
-          //         Icons.keyboard_double_arrow_down,
-          //       ),
-          //       const SizedBox(width: 8), // 아이콘과 텍스트 사이의 간격 조정
-          //       Text(
-          //         selcetValue(selectPlace, "지역 설정"),
-          //         style: const TextStyle(color: Colors.white, fontSize: 17),
-          //       ),
-          //     ],
-          //   ),
-          // ),
 
           //검색화면에 검색과 토글버튼 생성 예정
           IconButton(
@@ -216,7 +192,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
       ),
       body: Column(children: [
         FutureBuilder<List<Map<String, dynamic>>?>(
-          future: Api_Service().getData(),
+          future: firebase_.getData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -237,6 +213,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                   shrinkWrap: true,
                   itemCount: snapshot.data?.length ?? 0,
                   itemBuilder: (context, index) {
+                    RxBool isLiked = false.obs;
                     final notice = snapshot.data?[index];
                     return Container(
                       decoration: const BoxDecoration(
