@@ -18,4 +18,15 @@ class FirebaseService {
     print(dataList);
     return dataList;
   }
+
+  Future<void> PutData(
+      String title, String content, String imageUrl, String userid) async {
+    await firestore.collection('NoticeBoardTest').add({
+      'title': title,
+      'content': content,
+      'image': imageUrl,
+      'userid': userid,
+      'IN_DT': DateTime
+    });
+  }
 }
