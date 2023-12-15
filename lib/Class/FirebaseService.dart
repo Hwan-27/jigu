@@ -4,7 +4,7 @@ import 'package:jigu/screen/login/login_screen.dart';
 class FirebaseService {
   Future<List<Map<String, dynamic>>> getData() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
-        await firestore.collection("NoticeBoardTest").get();
+        await firestore.collection("NoticeBoard").get();
 
     List<Map<String, dynamic>> dataList = [];
 
@@ -21,7 +21,7 @@ class FirebaseService {
 
   Future<void> PutData(
       String title, String content, String imageUrl, String userid) async {
-    await firestore.collection('NoticeBoardTest').add({
+    await firestore.collection('NoticeBoard').add({
       'title': title,
       'content': content,
       'image': imageUrl,

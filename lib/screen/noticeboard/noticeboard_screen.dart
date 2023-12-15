@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:http/http.dart';
 import 'package:jigu/Class/ApiService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jigu/Class/FirebaseService.dart';
+import 'package:jigu/screen/noticeboard/noticeboard_AddNotice.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_kategorie_screen.dart';
 import 'package:jigu/screen/noticeboard/noticeboard_place_screen.dart';
 import 'package:jigu/screen/search/search_screen.dart';
@@ -77,44 +79,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
         actions: [
           InkWell(
             onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  String title = '';
-                  String Content = '';
-
-                  return Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextField(
-                          decoration: const InputDecoration(labelText: 'Title'),
-                          onChanged: (value) {
-                            title = value;
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        TextField(
-                          decoration:
-                              const InputDecoration(labelText: 'Content'),
-                          onChanged: (value) {
-                            Content = value;
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () async {
-                            Api_Service()
-                                .postData({'TITLE': title, 'CONTENT': Content});
-                          },
-                          child: const Text('게시글 추가'),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
+              Get.to(() => const NoticeAddScreen());
             },
             child: Container(
               width: 70,
