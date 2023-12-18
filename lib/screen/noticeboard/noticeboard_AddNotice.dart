@@ -93,6 +93,44 @@ class NoticeAddScreen extends StatelessWidget {
                             const BorderSide(color: Colors.grey, width: 1))),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '내용',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: 600,
+                  height: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: '내용을 입력해주세요',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide:
+                                const BorderSide(color: Colors.grey, width: 1)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                width: 1, color: Colors.grey))),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),

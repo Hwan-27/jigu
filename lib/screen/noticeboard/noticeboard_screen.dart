@@ -44,7 +44,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
         title: Title(
           color: Colors.white,
           child: SizedBox(
-            width: 107,
+            width: 120,
             height: 55,
             child: ElevatedButton(
               onPressed: () async {
@@ -60,12 +60,16 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
                   elevation: 0, backgroundColor: Colors.grey[850]),
               child: Row(
                 children: [
-                  Text(
-                    selcetValue(selectPlace, "덕천동"),
-                    style: const TextStyle(
+                  Expanded(
+                    // 추가된 부분
+                    child: Text(
+                      selcetValue(selectPlace, "덕천동"),
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   const Icon(
                     Icons.keyboard_arrow_down,
