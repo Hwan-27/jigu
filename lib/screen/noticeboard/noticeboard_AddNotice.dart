@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jigu/Class/StylyCss.dart';
+import 'package:jigu/model/kategorie_model.dart';
 
 class NoticeAddScreen extends StatelessWidget {
-  const NoticeAddScreen({super.key});
+  NoticeAddScreen({super.key});
+
+  final Kate = Kategorie().kategorie;
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +117,11 @@ class NoticeAddScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 600,
-                  height: 300,
+                  height: 150,
                   child: TextField(
+                    minLines: 1,
+                    maxLines: 5,
+                    maxLength: 500,
                     decoration: InputDecoration(
                         hintText: '내용을 입력해주세요',
                         hintStyle: const TextStyle(color: Colors.grey),
@@ -131,7 +137,48 @@ class NoticeAddScreen extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          DropdownButton(
+              padding: const EdgeInsets.only(left: 20),
+              iconEnabledColor: Colors.white,
+              items: Kate.keys.map((String kategorie) {
+                return DropdownMenuItem<String>(
+                  value: kategorie,
+                  child: Text(
+                    kategorie,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                print("카테고리 : $newValue");
+              }),
+          const SizedBox(
+            height: 60,
+          ),
+          TextButton(
+              onPressed: () {},
+              child: Center(
+                  child: Container(
+                      width: 200,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: Colors.deepOrange[300],
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: const Center(
+                        child: Text(
+                          '작성완료',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ))))
         ],
       ),
     );

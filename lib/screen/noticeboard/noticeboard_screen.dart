@@ -83,7 +83,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
         actions: [
           InkWell(
             onTap: () {
-              Get.to(() => const NoticeAddScreen());
+              Get.to(() => NoticeAddScreen());
             },
             child: Container(
               width: 70,
