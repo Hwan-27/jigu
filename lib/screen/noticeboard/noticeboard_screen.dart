@@ -166,13 +166,16 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
+              print('안되고있음1');
               //오류
               return Center(
                 child: Text('Error :${snapshot.error}'),
               );
             } else if (!snapshot.hasData) {
+              print('안되고있음2');
               return const Center(child: Text('데이터가 없습니다.'));
             } else {
+              print('되고있음');
               // 데이터를 표시할 내용
               return GestureDetector(
                 onTap: () {
