@@ -23,6 +23,7 @@ dependencies:
   cloud_firestore: ^4.9.2 
   http: ^0.13.3
   dio: ^4.0.0 # 최신 버전 사용 가능
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter
