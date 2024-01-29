@@ -14,7 +14,9 @@ class NoticeAddScreen extends StatefulWidget {
 }
 
 class _NoticeAddScreenState extends State<NoticeAddScreen> {
-  XFile? _image;
+  List<XFile?> imageList = List.generate(3, (index) => null);
+
+  int ListCnt = 0;
 
   final Kate = Kategorie().kategorie;
 
@@ -24,10 +26,60 @@ class _NoticeAddScreenState extends State<NoticeAddScreen> {
 
     if (image != null) {
       setState(() {
-        print(image.path); // 이미지 파일 경로 확인
-        _image = XFile(image.path);
+        print(image.path);
+        if (ListCnt < 3) {
+          imageList[ListCnt] = XFile(image.path);
+          ListCnt = ListCnt + 1;
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.grey[850],
+                content: Text('이미지는 최대 3개까지 추가 할 수 있습니다.'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      '확인',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        }
       });
     }
+  }
+
+  List<Widget> ImageContainer() {
+    List<Widget> ImageContainer = [];
+
+    for (int i = 0; i < ListCnt; i++) {
+      ImageContainer.add(Container(
+        margin: EdgeInsets.only(left: 20),
+        width: 75,
+        height: 75,
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: Colors.grey),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: kIsWeb
+            ? Image.network(
+                imageList[i]!.path,
+                fit: BoxFit.cover,
+              )
+            : Image.file(
+                File(imageList[i]!.path),
+                fit: BoxFit.cover,
+              ),
+      ));
+    }
+
+    return ImageContainer;
   }
 
   @override
@@ -61,31 +113,29 @@ class _NoticeAddScreenState extends State<NoticeAddScreen> {
                         border: Border.all(width: 1, color: Colors.grey),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10))),
-                    child: _image == null
-                        ? const Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.camera_alt,
-                                color: Colors.grey,
-                              ),
-                              Text(
-                                '0/3',
-                                style: TextStyle(color: Colors.grey),
-                              )
-                            ],
-                          )
-                        : kIsWeb
-                            ? Image.network(
-                                _image!.path,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.file(
-                                File(_image!.path),
-                                fit: BoxFit.cover,
-                              )),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.camera_alt,
+                          color: Colors.grey,
+                        ),
+                        Text(
+                          '$ListCnt/3',
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    )),
               ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ...ImageContainer()
+                ],
+              )
             ],
           ),
           const SizedBox(
